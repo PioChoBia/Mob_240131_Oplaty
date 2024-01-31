@@ -1,6 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mob_240131_Oplaty.Views.Suma">
+             x:Class="Mob_240131_Oplaty.Views.Suma"
+             NavigationPage.HasNavigationBar="False">
 
-</TabbedPage>
+  
+
+    <ListView x:Name="listSuma1">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal"
+                                 Margin="15,0,15,0">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding Name}" FontSize="16"/>
+                            <Label Text="{Binding Year}" FontSize="12"/>
+                        </StackLayout>
+                        <Button Text="Detail" WidthRequest="80" HeightRequest="40"
+                                VerticalOptions="Center"/>
+                    </StackLayout>
+
+
+
+                </ViewCell>
+                
+                
+            </DataTemplate>    
+        </ListView.ItemTemplate>
+    </ListView>
+
+
+
+</ContentPage>

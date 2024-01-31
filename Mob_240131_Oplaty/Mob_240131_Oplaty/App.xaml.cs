@@ -11,7 +11,7 @@ namespace Mob_240131_Oplaty
     {
       InitializeComponent();
 
-      MainPage = new Suma();
+      MainPage = new Zakladki();
     }
 
     protected override void OnStart()
