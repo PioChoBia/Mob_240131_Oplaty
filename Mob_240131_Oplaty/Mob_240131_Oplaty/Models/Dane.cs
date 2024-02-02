@@ -29,5 +29,11 @@ namespace Mob_240131_Oplaty.Models
     public double PradCena { get; set; }
     public int PradStan { get; set; }
 
+    //za pokoje
+    public double PokojDuzyCena { get; set; }
+    public double PokojSredniCena { get; set; }
+    public double PokojMalyCena { get; set; }
+
+
   }
 }
