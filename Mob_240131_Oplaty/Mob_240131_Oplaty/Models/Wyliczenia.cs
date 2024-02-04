@@ -6,7 +6,7 @@ namespace Mob_240131_Oplaty.Models
 {
    class Wyliczenia
    {
-      public string DataMiesiac { get; set; }
+      public string WierszDataMiesiac { get; set; }
   
       //opłaty stałe
       public string WierszOplatyStale1 {  get; set; }
@@ -28,14 +28,22 @@ namespace Mob_240131_Oplaty.Models
       public string WierszOplatyZmienne8 { get; set; }
       public string WierszOplatyZmienne9 { get; set; }
 
+      public double ZWKoszt { get; set; }
+      public double CWKoszt { get; set; }
+      public double GazKoszt { get; set; }
+      public double PradKoszt { get; set; }
+
       public double OplatyZmienne { get; set; }
       public double OplatyZmienne3 { get; set; }
 
 
-       //za pokoje
-       public double PokojDuzyCena { get; set; }
-       public double PokojSredniCena { get; set; }
-       public double PokojMalyCena { get; set; }
+    //za pokoje
+      public string WierszPokojDuzy1 { get; set; }
+      public string WierszPokojDuzy2 { get; set; }
+      public string WierszPokojSredni1 { get; set; }
+      public string WierszPokojSredni2 { get; set; }
+      public string WierszPokojMaly1 { get; set; }
+      public string WierszPokojMaly2 { get; set; }
 
       public double PokojDuzyKoszt { get; set; }
       public double PokojSredniKoszt { get; set; }

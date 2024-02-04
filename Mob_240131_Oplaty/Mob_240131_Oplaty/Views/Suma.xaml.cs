@@ -97,7 +97,7 @@ namespace Mob_240131_Oplaty.Views
         "lipiec","sierpień","wrzesień",
         "październik","listopad","grudzień"};
 
-      w.DataMiesiac= "dnia "+d1.Data.ToLocalTime().ToShortDateString()+"  za " + miesiace[d1.Miesiac];
+      w.WierszDataMiesiac= "dnia "+d1.Data.ToLocalTime().ToShortDateString()+"  za " + miesiace[d1.Miesiac];
 
       //opłaty stałe
       w.WierszOplatyStale1 = 
@@ -107,36 +107,49 @@ namespace Mob_240131_Oplaty.Views
          " ) + ( licznikPrąd= " + d1.PradOplata.ToString(".00")+" )";
       w.OplatyStale = d1.Czynsz + d1.Koba + d1.GazOplata + d1.PradOplata;
       w.OplatyStale3 = w.OplatyStale / 3;
-      w.WierszOplatyStale3 =
-        "suma= " + w.OplatyStale.ToString(".00") +
+      w.WierszOplatyStale3 = "suma= " + w.OplatyStale.ToString(".00") +
         "  1/3sumy= " + w.OplatyStale3.ToString(".00");
 
 
 
       //opłaty zmienne
-      w.WierszOplatyZmienne1 = "ZW= " + ((d1.ZWStan - d0.ZWStan) * d1.ZWCena).ToString(".00");
+      w.ZWKoszt = (d1.ZWStan - d0.ZWStan) * d1.ZWCena;
+      w.WierszOplatyZmienne1 = "ZW= " + w.ZWKoszt.ToString(".00");
       w.WierszOplatyZmienne2 = "  teraz= " + d1.ZWStan.ToString() + "  było= " + d0.ZWStan + "  po= " + d1.ZWCena;
-      
-      w.WierszOplatyZmienne3 = "CW= " + ((d1.CWStan - d0.CWStan) * d1.CWCena).ToString(".00");
+
+
+      w.CWKoszt = (d1.CWStan - d0.CWStan) * d1.CWCena;
+      w.WierszOplatyZmienne3 = "CW= " + w.CWKoszt.ToString(".00");
       w.WierszOplatyZmienne4 = "  teraz= " + d1.CWStan.ToString() + "  było= " + d0.CWStan + "  po= " + d1.CWCena;
 
-      w.WierszOplatyZmienne5 = "gaz= " + ((d1.GazStan - d0.GazStan) * d1.GazCena).ToString(".00");
+      w.GazKoszt = (d1.GazStan - d0.GazStan) * d1.GazCena;
+      w.WierszOplatyZmienne5 = "gaz= " + w.GazKoszt.ToString(".00");
       w.WierszOplatyZmienne6 = "  teraz= " + d1.GazStan.ToString() + "  było= " + d0.GazStan + "  po= " + d1.GazCena;
 
-      w.WierszOplatyZmienne7 = "prąd= " + ((d1.PradStan - d0.PradStan) * d1.PradCena).ToString(".00");
+      w.PradKoszt = (d1.PradStan - d0.PradStan) * d1.PradCena;
+      w.WierszOplatyZmienne7 = "prąd= " + w.PradKoszt.ToString(".00");
       w.WierszOplatyZmienne8 = "  teraz= " + d1.PradStan.ToString() + "  było= " + d0.PradStan + "  po= " + d1.PradCena;
 
       w.OplatyZmienne = w.ZWKoszt + w.CWKoszt + w.GazKoszt + w.PradKoszt;
       w.OplatyZmienne3 = w.OplatyZmienne / 3;
+      w.WierszOplatyZmienne9 =  "suma= " + w.OplatyZmienne.ToString(".00") +
+        "  1/3sumy= " + w.OplatyZmienne3.ToString(".00");
 
-      //za pokoj
-      w.PokojDuzyCena = d1.PokojDuzyCena;
-      w.PokojSredniCena = d1.PokojSredniCena;
-      w.PokojMalyCena = d1.PokojMalyCena;
+      //za pokoje
+      w.PokojDuzyKoszt = d1.PokojDuzyCena + w.OplatyStale3 + w.OplatyZmienne3;
+      w.WierszPokojDuzy1 = "pokój duży= " + w.PokojDuzyKoszt.ToString(".00");
+      w.WierszPokojDuzy2="czynsz= "+d1.PokojDuzyCena.ToString(".00")+
+        " + OS/3= "+w.OplatyStale3.ToString(".00")+" + OZ/3= " + w.OplatyZmienne3.ToString(".00");
 
-      w.PokojDuzyKoszt = w.PokojDuzyCena + w.OplatyStale3 + w.OplatyZmienne3;
-      w.PokojSredniKoszt = w.PokojSredniCena + w.OplatyStale3 + w.OplatyZmienne3;
-      w.PokojMalyKoszt = w.PokojMalyCena + w.OplatyStale3 + w.OplatyZmienne3;
+      w.PokojSredniKoszt = d1.PokojSredniCena + w.OplatyStale3 + w.OplatyZmienne3;
+      w.WierszPokojSredni1 = "pokój średni= " + w.PokojSredniKoszt.ToString(".00");
+      w.WierszPokojSredni2 = "czynsz= " + d1.PokojSredniCena.ToString(".00") +
+        " + OS/3= " + w.OplatyStale3.ToString(".00") + " + OZ/3= " + w.OplatyZmienne3.ToString(".00");
+
+      w.PokojMalyKoszt = d1.PokojMalyCena + w.OplatyStale3 + w.OplatyZmienne3;
+      w.WierszPokojMaly1 = "pokój maly= " + w.PokojMalyKoszt.ToString(".00");
+      w.WierszPokojMaly2 = "czynsz= " + d1.PokojMalyCena.ToString(".00") +
+        " + OS/3= " + w.OplatyStale3.ToString(".00") + " + OZ/3= " + w.OplatyZmienne3.ToString(".00");
 
       return w;
     }
