@@ -21,7 +21,7 @@ namespace Mob_240131_Oplaty.Views
       {
         new Dane{
           Data=DateTime.Now,
-          Miesiac=(DateTime.Now.Month)-1,
+          Miesiac=(DateTime.Now.Month),
           
           //spoldzielnia
           Czynsz=534.56,
@@ -41,7 +41,12 @@ namespace Mob_240131_Oplaty.Views
           //prad
           PradOplata=12.25,
           PradCena=.80043,
-          PradStan=10080
+          PradStan=10080,
+
+          //pokoje
+          PokojDuzyCena=472.5,
+          PokojSredniCena=399,
+          PokojMalyCena=340,
         },
 
         new Dane{
@@ -67,52 +72,59 @@ namespace Mob_240131_Oplaty.Views
           PradOplata=12.25,
           PradCena=.80043,
           PradStan=10150,
+
+          //pokoje
+          PokojDuzyCena=472.5,
+          PokojSredniCena=399,
+          PokojMalyCena=340,
         }
        };
          
       List<Wyliczenia>  listWyliczenia = new List<Wyliczenia>();
 
-      listWyliczenia[0] = Wylicz(listDane[1], listDane[0]);
-         
+      listWyliczenia.Add( Wylicz(listDane[1], listDane[0]) );
+      listWyliczenia.Add(Wylicz(listDane[1], listDane[0]));
+
+      listViewWyliczenia.ItemsSource = listWyliczenia; 
 
     }
 
     private Wyliczenia  Wylicz(Dane d1,Dane d0) { 
       Wyliczenia w = new Wyliczenia();
+      string[] miesiace = {
+        "styczeń","luty","marzec",
+        "kwiecień","maj","czerwiec",
+        "lipiec","sierpień","wrzesień",
+        "październik","listopad","grudzień"};
 
-      w.Data= d1.Data;
-      w.Miesiac= d1.Miesiac;
+      w.DataMiesiac= "dnia "+d1.Data.ToLocalTime().ToShortDateString()+"  za " + miesiace[d1.Miesiac];
 
       //opłaty stałe
-      w.Czynsz = d1.Czynsz;
-      w.Koba = d1.Koba;
-      w.GazOplata = d1.GazOplata;
-      w.PradOplata = d1.PradOplata;
-      
-      w.OplatyStale = w.Czynsz + w.Koba + w.GazOplata + w.PradOplata;
+      w.WierszOplatyStale1 = 
+        "( czynsz= " + d1.Czynsz.ToString(".00") + " ) + ( Koba= " + d1.Koba.ToString(".00")+" ) +";
+      w.WierszOplatyStale2 =
+         "( licznikGaz= " + d1.GazOplata.ToString(".00") + 
+         " ) + ( licznikPrąd= " + d1.PradOplata.ToString(".00")+" )";
+      w.OplatyStale = d1.Czynsz + d1.Koba + d1.GazOplata + d1.PradOplata;
       w.OplatyStale3 = w.OplatyStale / 3;
+      w.WierszOplatyStale3 =
+        "suma= " + w.OplatyStale.ToString(".00") +
+        "  1/3sumy= " + w.OplatyStale3.ToString(".00");
+
 
 
       //opłaty zmienne
-      w.ZWStanTeraz = d1.ZWStan;
-      w.ZWStanBylo = d0.ZWStan;
-      w.ZWCena = d1.ZWCena;
-      w.ZWKoszt = (w.ZWStanTeraz - w.ZWStanBylo) * w.ZWCena;
+      w.WierszOplatyZmienne1 = "ZW= " + ((d1.ZWStan - d0.ZWStan) * d1.ZWCena).ToString(".00");
+      w.WierszOplatyZmienne2 = "  teraz= " + d1.ZWStan.ToString() + "  było= " + d0.ZWStan + "  po= " + d1.ZWCena;
+      
+      w.WierszOplatyZmienne3 = "CW= " + ((d1.CWStan - d0.CWStan) * d1.CWCena).ToString(".00");
+      w.WierszOplatyZmienne4 = "  teraz= " + d1.CWStan.ToString() + "  było= " + d0.CWStan + "  po= " + d1.CWCena;
 
-      w.CWStanTeraz = d1.CWStan;
-      w.CWStanBylo = d0.CWStan;
-      w.CWCena = d1.CWCena;
-      w.CWKoszt = (w.CWStanTeraz - w.CWStanBylo) * w.CWCena;
+      w.WierszOplatyZmienne5 = "gaz= " + ((d1.GazStan - d0.GazStan) * d1.GazCena).ToString(".00");
+      w.WierszOplatyZmienne6 = "  teraz= " + d1.GazStan.ToString() + "  było= " + d0.GazStan + "  po= " + d1.GazCena;
 
-      w.GazStanTeraz = d1.GazStan;
-      w.GazStanBylo = d0.GazStan;
-      w.GazCena = d1.GazCena;
-      w.GazKoszt = (w.GazStanTeraz - w.GazStanBylo) * w.GazCena;
-
-      w.PradStanTeraz = d1.PradStan;
-      w.PradStanBylo = d0.PradStan;
-      w.PradCena = d1.PradCena;
-      w.PradKoszt = (w.PradStanTeraz - w.PradStanBylo) * w.PradCena;
+      w.WierszOplatyZmienne7 = "prąd= " + ((d1.PradStan - d0.PradStan) * d1.PradCena).ToString(".00");
+      w.WierszOplatyZmienne8 = "  teraz= " + d1.PradStan.ToString() + "  było= " + d0.PradStan + "  po= " + d1.PradCena;
 
       w.OplatyZmienne = w.ZWKoszt + w.CWKoszt + w.GazKoszt + w.PradKoszt;
       w.OplatyZmienne3 = w.OplatyZmienne / 3;
