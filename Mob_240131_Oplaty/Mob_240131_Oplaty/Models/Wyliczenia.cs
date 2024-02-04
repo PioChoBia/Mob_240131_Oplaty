@@ -9,24 +9,20 @@ namespace Mob_240131_Oplaty.Models
       public string WierszDataMiesiac { get; set; }
   
       //opłaty stałe
-      public string WierszOplatyStale1 {  get; set; }
+      public string WierszOplatyStale0 {  get; set; }
+      public string WierszOplatyStale1 { get; set; }
       public string WierszOplatyStale2 { get; set; }
-      public string WierszOplatyStale3 { get; set; }
 
       public double OplatyStale { get; set; }
       public double OplatyStale3 { get; set; }
 
 
-      //oplaty zmienne
-      public string WierszOplatyZmienne1 { get; set; }
-      public string WierszOplatyZmienne2 { get; set; }
-      public string WierszOplatyZmienne3 { get; set; }
-      public string WierszOplatyZmienne4 { get; set; }
-      public string WierszOplatyZmienne5 { get; set; }
-      public string WierszOplatyZmienne6 { get; set; }
-      public string WierszOplatyZmienne7 { get; set; }
-      public string WierszOplatyZmienne8 { get; set; }
-      public string WierszOplatyZmienne9 { get; set; }
+    //oplaty zmienne
+      public string WierszOplatyZmienne0 { get; set; }
+      public string WierszZW { get; set; }
+      public string WierszCW { get; set; }
+      public string WierszGaz { get; set; }
+      public string WierszPrad { get; set; }
 
       public double ZWKoszt { get; set; }
       public double CWKoszt { get; set; }
@@ -38,12 +34,12 @@ namespace Mob_240131_Oplaty.Models
 
 
     //za pokoje
+      public string WierszPokojDuzy0 { get; set; }
       public string WierszPokojDuzy1 { get; set; }
-      public string WierszPokojDuzy2 { get; set; }
+      public string WierszPokojSredni0 { get; set; }
       public string WierszPokojSredni1 { get; set; }
-      public string WierszPokojSredni2 { get; set; }
+      public string WierszPokojMaly0 { get; set; }
       public string WierszPokojMaly1 { get; set; }
-      public string WierszPokojMaly2 { get; set; }
 
       public double PokojDuzyKoszt { get; set; }
       public double PokojSredniKoszt { get; set; }

@@ -9,22 +9,30 @@
         <Button  x:Name="buttonSumaNowy" Text="nowy" Clicked="buttonSumaNowy_Clicked"/>
 
 
-        <ListView x:Name="listViewWyliczenia" Margin="2" RowHeight="300">
+        <ListView x:Name="listViewWyliczenia" Margin="2" RowHeight="500" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding DataMiesiac}" BackgroundColor="#b1a7a6"/>
+                            <Label Text="{Binding WierszDataMiesiac}" BackgroundColor="#b1a7a6"/>
 
-                            <Label Text="oplaty stałe=" BackgroundColor="#d3d3d3"/>
-                            <Label Text="{Binding WierszOplatyStale1}" />
+                            <Label Text="{Binding WierszOplatyStale0}" BackgroundColor="#d3d3d3"/>
+                            <Label Text="{Binding WierszOplatyStale1}"/>
                             <Label Text="{Binding WierszOplatyStale2}"/>
-                            <Label Text="{Binding WierszOplatyStale3}"/>
+
+                            <Label Text="{Binding WierszOplatyZmienne0}" BackgroundColor="#d3d3d3"/>
+                            <Label Text="{Binding WierszZW}"/>
+                            <Label Text="{Binding WierszCW}"/>
+                            <Label Text="{Binding WierszGaz}"/>
+                            <Label Text="{Binding WierszPrad}"/>
 
 
-
-
-
+                            <Label Text="{Binding WierszPokojDuzy0}" BackgroundColor="#d3d3d3"/>
+                            <Label Text="{Binding WierszPokojDuzy1}"/>
+                            <Label Text="{Binding WierszPokojSredni0}" BackgroundColor="#d3d3d3"/>
+                            <Label Text="{Binding WierszPokojSredni1}"/>
+                            <Label Text="{Binding WierszPokojMaly0}" BackgroundColor="#d3d3d3"/>
+                            <Label Text="{Binding WierszPokojMaly1}"/>
                         </StackLayout>                                                                       
                     </ViewCell>
                 </DataTemplate>
