@@ -17,14 +17,11 @@ namespace Mob_240131_Oplaty.Views
       var suma = new NavigationPage(new Suma()) { Title = "suma" };
       var prad = new NavigationPage(new Prad()) { Title = "prad" };
       var gaz = new NavigationPage(new Gaz()) { Title = "gaz" };
-      var zw = new NavigationPage(new ZimnaWoda()) { Title = "zw" };
-      var cw = new NavigationPage(new CieplaWoda()) { Title = "cw" };
+      var spoldz = new NavigationPage(new Spoldz()) { Title = "Zachęta" };
       Children.Add(suma);
       Children.Add(prad);
       Children.Add(gaz);
-      Children.Add(zw);
-      Children.Add(cw);
-
+      Children.Add(spoldz);
 
       InitializeComponent();
     }

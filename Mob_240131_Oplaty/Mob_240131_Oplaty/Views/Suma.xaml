@@ -6,14 +6,42 @@
 
 
     <StackLayout>
-        <Button  x:Name="buttonSumaNowy" Text="nowy" Clicked="buttonSumaNowy_Clicked"/>
+        <StackLayout  Orientation="Horizontal" HorizontalOptions="Center">
+            <Button x:Name="buttonSumaDodaj" Text=" dodaj " Clicked="buttonSumaDodaj_Clicked"/>
+            <Button x:Name="buttonSumaEdytuj" Text=" edytuj " Clicked="buttonSumaEdytuj_Clicked"/>
+            <Button x:Name="buttonSumaUsun" Text=" usuń " Clicked="buttonSumaUsun_Clicked"/>
+         </StackLayout>
+        <StackLayout x:Name="stackLayoutSumaUsun" IsVisible="false" BackgroundColor="MediumVioletRed">
+            <Label Text="zaznacz co usunac" 
+                   HorizontalOptions="CenterAndExpand" 
+                   FontSize="Large"/>
+            <Label x:Name="labelSumaUsun"
+                   Text="-" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="Medium"/>
+            <Button x:Name="buttonSumaUsun1" 
+                    Text=" usuń " 
+                    HorizontalOptions="CenterAndExpand"
+                    Clicked="buttonSumaUsun1_Clicked"/>
 
 
-        <ListView x:Name="listViewWyliczenia" Margin="2" RowHeight="500" >
+
+
+
+
+        </StackLayout>   
+                     
+                
+                
+
+
+        <ListView x:Name="listViewWyliczenia" Margin="2" RowHeight="500" ItemTapped="listViewWyliczenia_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
+                        <StackLayout BackgroundColor="#1515" >
+                            <Label Text="---------------------------" HorizontalOptions="Center"/>
+                            
                             <Label Text="{Binding WierszDataMiesiac}" BackgroundColor="#b1a7a6"/>
 
                             <Label Text="{Binding WierszOplatyStale0}" BackgroundColor="#d3d3d3"/>
@@ -33,6 +61,8 @@
                             <Label Text="{Binding WierszPokojSredni1}"/>
                             <Label Text="{Binding WierszPokojMaly0}" BackgroundColor="#d3d3d3"/>
                             <Label Text="{Binding WierszPokojMaly1}"/>
+                            
+                            <Label Text="---------------------------" HorizontalOptions="Center"/>
                         </StackLayout>                                                                       
                     </ViewCell>
                 </DataTemplate>

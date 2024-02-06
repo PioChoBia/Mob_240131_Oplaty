@@ -9,12 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace Mob_240131_Oplaty.Views
 {
-  [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class CieplaWoda : ContentPage
-  {
-    public CieplaWoda()
-    {
-      InitializeComponent();
-    }
-  }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class Spoldz : ContentPage
+	{
+		public Spoldz ()
+		{
+			InitializeComponent ();
+		}
+	}
 }

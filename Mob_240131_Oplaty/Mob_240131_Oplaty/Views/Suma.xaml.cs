@@ -13,43 +13,47 @@ namespace Mob_240131_Oplaty.Views
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class Suma : ContentPage
   {
+
+    public List<Dane> listDane = new List<Dane>();
+    List<Wyliczenia> listWyliczenia = new List<Wyliczenia>();
+
     public Suma()
     {
       InitializeComponent();
 
-      List<Dane> listDane = new List<Dane>
-      {
-        new Dane{
-          Data =  DateTime.Now ,
-          Miesiac=DateTime.Now.Month,
-          
+      listDane.Add(
+        new Dane {
+          Data = DateTime.Now,
+          Miesiac = DateTime.Now.Month,
+
           //spoldzielnia
-          Czynsz=534.56,
-          ZWCena=8.2,
-          ZWStan=106,
-          CWCena=48.98,
-          CWStan=57,
+          Czynsz = 534.56,
+          ZWCena = 8.2,
+          ZWStan = 106,
+          CWCena = 48.98,
+          CWStan = 57,
 
           //internet
-          Koba=40,
+          Koba = 40,
 
           //gaz
-          GazOplata=8.758,
-          GazCena=3.4686,
-          GazStan=321,
+          GazOplata = 8.758,
+          GazCena = 3.4686,
+          GazStan = 321,
 
           //prad
-          PradOplata=12.25,
-          PradCena=.80043,
-          PradStan=10080,
+          PradOplata = 12.25,
+          PradCena = .80043,
+          PradStan = 10080,
 
           //pokoje
-          PokojDuzyCena=472.5,
-          PokojSredniCena=399,
-          PokojMalyCena=340,
-        },
+          PokojDuzyCena = 472.5,
+          PokojSredniCena = 399,
+          PokojMalyCena = 340,
+        });
 
-        new Dane{
+      listDane.Add(
+       new Dane{
           Data=DateTime.Now,
           Miesiac=DateTime.Now.Month,
           
@@ -77,10 +81,10 @@ namespace Mob_240131_Oplaty.Views
           PokojDuzyCena=472.5,
           PokojSredniCena=399,
           PokojMalyCena=340,
-        }
-       };
+        } 
+       );
          
-      List<Wyliczenia>  listWyliczenia = new List<Wyliczenia>();
+      
 
       listWyliczenia.Add( Wylicz(listDane[1], listDane[0]) );
       listWyliczenia.Add(Wylicz(listDane[1], listDane[0]));
@@ -89,7 +93,7 @@ namespace Mob_240131_Oplaty.Views
 
     }
 
-    private Wyliczenia  Wylicz(Dane d1,Dane d0) { 
+     Wyliczenia  Wylicz(Dane d1,Dane d0) { 
       Wyliczenia w = new Wyliczenia();
       string[] miesiace = {
         "pusty","styczeń","luty","marzec",
@@ -103,10 +107,10 @@ namespace Mob_240131_Oplaty.Views
 
       //opłaty stałe
       w.WierszOplatyStale1 = 
-        "( czynszSpół= " + d1.Czynsz.ToString(".00") + " ) + ( Koba= " + d1.Koba.ToString(".00")+" ) +";
+        "czynszSpółdzielni " + d1.Czynsz.ToString(".00") + " + Koba " + d1.Koba.ToString(".00")+" +";
       w.WierszOplatyStale2 =
-         "( licznikGaz= " + d1.GazOplata.ToString(".000") + 
-         " ) + ( licznikPrąd= " + d1.PradOplata.ToString(".000")+" )";
+         "licznikGaz " + d1.GazOplata.ToString(".000") + 
+         " + licznikPrąd " + d1.PradOplata.ToString(".000");
       w.OplatyStale = d1.Czynsz + d1.Koba + d1.GazOplata + d1.PradOplata;
       w.OplatyStale3 = w.OplatyStale / 3;
       w.WierszOplatyStale0 = "OplatyStale= " + w.OplatyStale.ToString(".00") +
@@ -140,18 +144,18 @@ namespace Mob_240131_Oplaty.Views
       //za pokoje
       w.PokojDuzyKoszt = d1.PokojDuzyCena + w.OplatyStale3 + w.OplatyZmienne3;
       w.WierszPokojDuzy0 = "pokój duży= " + w.PokojDuzyKoszt.ToString(".00");
-      w.WierszPokojDuzy1="czynsz= "+d1.PokojDuzyCena.ToString(".00")+
-        " + OS/3= "+w.OplatyStale3.ToString(".00") + " + OZ/3= " + w.OplatyZmienne3.ToString(".00");
+      w.WierszPokojDuzy1="czynsz "+d1.PokojDuzyCena.ToString(".00")+
+        " + OS/3 "+w.OplatyStale3.ToString(".00") + " + OZ/3 " + w.OplatyZmienne3.ToString(".00");
 
       w.PokojSredniKoszt = d1.PokojSredniCena + w.OplatyStale3 + w.OplatyZmienne3;
       w.WierszPokojSredni0 = "pokój średni= " + w.PokojSredniKoszt.ToString(".00");
-      w.WierszPokojSredni1 = "czynsz= " + d1.PokojSredniCena.ToString(".00") +
-        " + OS/3= " + w.OplatyStale3.ToString(".00") + " + OZ/3= " + w.OplatyZmienne3.ToString(".00");
+      w.WierszPokojSredni1 = "czynsz " + d1.PokojSredniCena.ToString(".00") +
+        " + OS/3 " + w.OplatyStale3.ToString(".00") + " + OZ/3 " + w.OplatyZmienne3.ToString(".00");
 
       w.PokojMalyKoszt = d1.PokojMalyCena + w.OplatyStale3 + w.OplatyZmienne3;
       w.WierszPokojMaly0 = "pokój maly= " + w.PokojMalyKoszt.ToString(".00");
-      w.WierszPokojMaly1 = "czynsz= " + d1.PokojMalyCena.ToString(".00") +
-        " + OS/3= " + w.OplatyStale3.ToString(".00") + " + OZ/3= " + w.OplatyZmienne3.ToString(".00");
+      w.WierszPokojMaly1 = "czynsz " + d1.PokojMalyCena.ToString(".00") +
+        " + OS/3 " + w.OplatyStale3.ToString(".00") + " + OZ/3 " + w.OplatyZmienne3.ToString(".00");
 
       return w;
     }
@@ -159,9 +163,53 @@ namespace Mob_240131_Oplaty.Views
    
 
 
-    private void buttonSumaNowy_Clicked(object sender, EventArgs e)
+
+    private void buttonSumaDodaj_Clicked(object sender, EventArgs e)
     {
 
     }
+
+    private void buttonSumaEdytuj_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void buttonSumaUsun_Clicked(object sender, EventArgs e)
+    {
+      if ( stackLayoutSumaUsun.IsVisible==false)
+      {
+        stackLayoutSumaUsun.IsVisible = true;
+
+        
+
+        var wybrano = listViewWyliczenia. as Wyliczenia;
+
+      
+
+      } else
+      {
+        stackLayoutSumaUsun.IsVisible = false;
+        labelSumaUsun.Text = "";
+      }
+        
+
+    }
+
+
+    private void listViewWyliczenia_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+      var wiersz = e.Item as Wyliczenia;
+      labelSumaUsun.Text = wiersz.WierszDataMiesiac;
+    }
+
+
+    private void buttonSumaUsun1_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+
+
+
   }
 }
