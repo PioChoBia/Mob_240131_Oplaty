@@ -11,26 +11,25 @@
             <Button x:Name="buttonSumaEdytuj" Text=" edytuj " Clicked="buttonSumaEdytuj_Clicked"/>
             <Button x:Name="buttonSumaUsun" Text=" usuń " Clicked="buttonSumaUsun_Clicked"/>
          </StackLayout>
+        
         <StackLayout x:Name="stackLayoutSumaUsun" IsVisible="false" BackgroundColor="MediumVioletRed">
             <Label Text="zaznacz co usunac" 
                    HorizontalOptions="CenterAndExpand" 
-                   FontSize="Large"/>
+                   FontSize="Medium"/>
             <Label x:Name="labelSumaUsun"
-                   Text="-" 
+                   Text="" 
                    HorizontalOptions="CenterAndExpand"
                    FontSize="Medium"/>
-            <Button x:Name="buttonSumaUsun1" 
+            
+            <StackLayout Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
+                <Button x:Name="buttonSumaUsun1" 
                     Text=" usuń " 
-                    HorizontalOptions="CenterAndExpand"
-                    Clicked="buttonSumaUsun1_Clicked"/>
-
-
-
-
-
-
-        </StackLayout>   
-                     
+                    Clicked="buttonSumaUsun1_Clicked"/>                
+                <Button x:Name="buttonSumaUsunCancel"
+                        Text=" cancel "    
+                        Clicked="buttonSumaUsunCancel_Clicked"/>
+            </StackLayout>
+        </StackLayout>                       
                 
                 
 

@@ -15,7 +15,8 @@ namespace Mob_240131_Oplaty.Views
   {
 
     public List<Dane> listDane = new List<Dane>();
-    List<Wyliczenia> listWyliczenia = new List<Wyliczenia>();
+    public int  nrTapped = 0;
+    public List<Wyliczenia> listWyliczenia = new List<Wyliczenia>();
 
     public Suma()
     {
@@ -89,11 +90,29 @@ namespace Mob_240131_Oplaty.Views
       listWyliczenia.Add( Wylicz(listDane[1], listDane[0]) );
       listWyliczenia.Add(Wylicz(listDane[1], listDane[0]));
 
-      listViewWyliczenia.ItemsSource = listWyliczenia; 
+
+
+      /*
+      //sortuje po indeksie od największego do najmniejszego
+      listViewWyliczenia.GetSortedTabIndexesOnParentPage();
+      listWyliczenia.Sort((a, b) => b.CompareTo(a) );
+
+
+      listViewWyliczenia.ItemsSource = listWyliczenia;
+
+      listWyliczenia.Sort( delegate (  x, Wyliczenia y)
+      {
+        
+
+
+      });
+
+        */
+
 
     }
 
-     Wyliczenia  Wylicz(Dane d1,Dane d0) { 
+    Wyliczenia  Wylicz(Dane d1,Dane d0) { 
       Wyliczenia w = new Wyliczenia();
       string[] miesiace = {
         "pusty","styczeń","luty","marzec",
@@ -180,16 +199,16 @@ namespace Mob_240131_Oplaty.Views
       {
         stackLayoutSumaUsun.IsVisible = true;
 
-        
+   
 
-        var wybrano = listViewWyliczenia. as Wyliczenia;
+        
 
       
 
       } else
       {
-        stackLayoutSumaUsun.IsVisible = false;
         labelSumaUsun.Text = "";
+        stackLayoutSumaUsun.IsVisible = false;   
       }
         
 
@@ -198,18 +217,20 @@ namespace Mob_240131_Oplaty.Views
 
     private void listViewWyliczenia_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-      var wiersz = e.Item as Wyliczenia;
-      labelSumaUsun.Text = wiersz.WierszDataMiesiac;
+      Wyliczenia wyliczeniaTapped = e.Item as Wyliczenia;
+      nrTapped = listWyliczenia.IndexOf( wyliczeniaTapped );
+      labelSumaUsun.Text = nrTapped+ " "+  wyliczeniaTapped.WierszDataMiesiac;
     }
-
 
     private void buttonSumaUsun1_Clicked(object sender, EventArgs e)
     {
 
     }
 
-
-
-
+    private void buttonSumaUsunCancel_Clicked(object sender, EventArgs e)
+    {
+      labelSumaUsun.Text = "";
+      stackLayoutSumaUsun.IsVisible = false;
+    }
   }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Mob_240131_Oplaty.Models
 {
-   class Wyliczenia
+   public class Wyliczenia
    {
       public string WierszDataMiesiac { get; set; }
   
