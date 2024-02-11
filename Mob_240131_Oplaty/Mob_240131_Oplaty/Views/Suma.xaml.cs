@@ -14,16 +14,9 @@ namespace Mob_240131_Oplaty.Views
   public partial class Suma : ContentPage
   {
 
-    public List<Dane> listDane = new List<Dane>();
-    public int  nrTapped = 0;
-    public List<Wyliczenia> listWyliczenia = new List<Wyliczenia>();
-
-    public Suma()
+    public List<Dane> listDane = new List<Dane>
     {
-      InitializeComponent();
-
-      listDane.Add(
-        new Dane {
+       new Dane {
           Data = DateTime.Now,
           Miesiac = DateTime.Now.Month,
 
@@ -51,9 +44,7 @@ namespace Mob_240131_Oplaty.Views
           PokojDuzyCena = 472.5,
           PokojSredniCena = 399,
           PokojMalyCena = 340,
-        });
-
-      listDane.Add(
+        },
        new Dane{
           Data=DateTime.Now,
           Miesiac=DateTime.Now.Month,
@@ -82,37 +73,50 @@ namespace Mob_240131_Oplaty.Views
           PokojDuzyCena=472.5,
           PokojSredniCena=399,
           PokojMalyCena=340,
-        } 
-       );
-         
-      
+        }
 
-      listWyliczenia.Add( Wylicz(listDane[1], listDane[0]) );
-      listWyliczenia.Add(Wylicz(listDane[1], listDane[0]));
+    };
+    public int  nrTapped = 0;
+    public List<Wyliczenia> listWyliczenia = new List<Wyliczenia>();
 
 
 
-      /*
-      //sortuje po indeksie od największego do najmniejszego
-      listViewWyliczenia.GetSortedTabIndexesOnParentPage();
-      listWyliczenia.Sort((a, b) => b.CompareTo(a) );
+    public Suma()
+    {
+      InitializeComponent();
 
+
+
+      listWyliczenia.Add( WyliczMiesiac( listDane[1], listDane[0] ) );
+      listWyliczenia.Add( WyliczMiesiac( listDane[1], listDane[0] ) );
+
+      listWyliczenia = SortujListWyliczenia( listWyliczenia );
 
       listViewWyliczenia.ItemsSource = listWyliczenia;
-
-      listWyliczenia.Sort( delegate (  x, Wyliczenia y)
-      {
-        
-
-
-      });
-
-        */
+      
 
 
     }
 
-    Wyliczenia  Wylicz(Dane d1,Dane d0) { 
+
+
+
+    List<Wyliczenia> SortujListWyliczenia(List<Wyliczenia> lw0)
+    {
+      List<Wyliczenia> lw1 = new List<Wyliczenia>();
+      List<Dane> ld1 = new List<Dane>();
+
+      //sortuje, układa od ostatniego jako pierwszy do pierwszego
+      for (int i = 0; i<lw0.Count; i++)
+      {
+        lw1.Add( lw0[lw0.Count-1-i] );
+      }
+      return lw1;
+    }
+
+
+
+    Wyliczenia  WyliczMiesiac(Dane d1,Dane d0) { 
       Wyliczenia w = new Wyliczenia();
       string[] miesiace = {
         "pusty","styczeń","luty","marzec",
@@ -134,7 +138,6 @@ namespace Mob_240131_Oplaty.Views
       w.OplatyStale3 = w.OplatyStale / 3;
       w.WierszOplatyStale0 = "OplatyStale= " + w.OplatyStale.ToString(".00") +
         "   OP/3= " + w.OplatyStale3.ToString(".00");
-
 
 
       //opłaty zmienne
@@ -179,40 +182,10 @@ namespace Mob_240131_Oplaty.Views
       return w;
     }
 
-   
 
 
 
-    private void buttonSumaDodaj_Clicked(object sender, EventArgs e)
-    {
 
-    }
-
-    private void buttonSumaEdytuj_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void buttonSumaUsun_Clicked(object sender, EventArgs e)
-    {
-      if ( stackLayoutSumaUsun.IsVisible==false)
-      {
-        stackLayoutSumaUsun.IsVisible = true;
-
-   
-
-        
-
-      
-
-      } else
-      {
-        labelSumaUsun.Text = "";
-        stackLayoutSumaUsun.IsVisible = false;   
-      }
-        
-
-    }
 
 
     private void listViewWyliczenia_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -220,10 +193,111 @@ namespace Mob_240131_Oplaty.Views
       Wyliczenia wyliczeniaTapped = e.Item as Wyliczenia;
       nrTapped = listWyliczenia.IndexOf( wyliczeniaTapped );
       labelSumaUsun.Text = nrTapped+ " "+  wyliczeniaTapped.WierszDataMiesiac;
+      labelSumaEdytuj.Text = nrTapped + " " + wyliczeniaTapped.WierszDataMiesiac;
+
     }
+
+
+
+
+    //---dodaj----------------------------------------------------------------
+    private void buttonSumaDodaj_Clicked(object sender, EventArgs e)
+    {
+      if (stackLayoutSumaDodaj.IsVisible == false 
+          && stackLayoutSumaEdytuj.IsVisible == false 
+          && stackLayoutSumaUsun.IsVisible == false)
+      {
+        stackLayoutSumaDodaj.IsVisible = true;
+
+
+
+
+      }
+      else
+      {
+        stackLayoutSumaDodaj.IsVisible = false;
+      }
+
+
+
+    }
+
+    private void buttonSumaDodaj1_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void buttonSumaDodajCancel_Clicked(object sender, EventArgs e)
+    {
+      stackLayoutSumaEdytuj.IsVisible = false;
+    }
+
+
+
+
+
+
+    //---edytuj-------------------------------------------------------
+    private void buttonSumaEdytuj_Clicked(object sender, EventArgs e)
+    {
+      if (stackLayoutSumaDodaj.IsVisible == false
+           && stackLayoutSumaEdytuj.IsVisible == false
+           && stackLayoutSumaUsun.IsVisible == false)
+      {
+        stackLayoutSumaEdytuj.IsVisible = true;
+
+
+
+
+      }
+      else
+      {
+        labelSumaEdytuj.Text = "";
+        stackLayoutSumaEdytuj.IsVisible = false;
+      }
+
+    }
+
+
+    private void buttonSumaEdytuj1_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void buttonSumaEdytujCancel_Clicked(object sender, EventArgs e)
+    {
+      labelSumaEdytuj.Text = "";
+      stackLayoutSumaEdytuj.IsVisible = false;
+    }
+
+
+
+
+    //---usuń--------------------------------------------------------
+    private void buttonSumaUsun_Clicked(object sender, EventArgs e)
+    {
+      if (stackLayoutSumaDodaj.IsVisible == false)
+      {
+        stackLayoutSumaDodajEdytujUsun.IsVisible = false;
+        stackLayoutSumaUsun.IsVisible = true;
+
+
+      }
+      else
+      {
+        labelSumaUsun.Text = "";
+        stackLayoutSumaUsun.IsVisible = false;
+        stackLayoutSumaDodajEdytujUsun.IsVisible = true;
+      }
+    }
+
+
 
     private void buttonSumaUsun1_Clicked(object sender, EventArgs e)
     {
+      stackLayoutSumaUsun1.IsVisible = false;
+      stackLayoutSumaUsun2.IsVisible= true;
+
 
     }
 
@@ -231,6 +305,27 @@ namespace Mob_240131_Oplaty.Views
     {
       labelSumaUsun.Text = "";
       stackLayoutSumaUsun.IsVisible = false;
+      stackLayoutSumaDodajEdytujUsun.IsVisible = true;
     }
+
+    private void buttonSumaUsun2_Clicked(object sender, EventArgs e)
+    {
+      listDane.RemoveAt(nrTapped);
+      listWyliczenia.RemoveAt(nrTapped);
+
+
+
+      labelSumaUsun.Text = " - usunięto - ";
+      stackLayoutSumaUsun1.IsVisible = true;
+      stackLayoutSumaUsun2.IsVisible = false;
+    }
+
+    private void buttonSumaUsunCancel2_Clicked(object sender, EventArgs e)
+    {
+      stackLayoutSumaUsun1.IsVisible = true;
+      stackLayoutSumaUsun2.IsVisible = false;
+    }
+  
+  
   }
 }

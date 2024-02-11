@@ -6,14 +6,56 @@
 
 
     <StackLayout>
-        <StackLayout  Orientation="Horizontal" HorizontalOptions="Center">
+        
+        <StackLayout  x:Name="stackLayoutSumaDodajEdytujUsun" IsVisible="true"
+            Orientation="Horizontal" HorizontalOptions="Center">
             <Button x:Name="buttonSumaDodaj" Text=" dodaj " Clicked="buttonSumaDodaj_Clicked"/>
             <Button x:Name="buttonSumaEdytuj" Text=" edytuj " Clicked="buttonSumaEdytuj_Clicked"/>
             <Button x:Name="buttonSumaUsun" Text=" usuń " Clicked="buttonSumaUsun_Clicked"/>
          </StackLayout>
+
+
+        <StackLayout x:Name="stackLayoutSumaDodaj" IsVisible="false" BackgroundColor="AntiqueWhite">
+            <Label Text="na pewno dodać nowy miesiąc ?" 
+                   HorizontalOptions="CenterAndExpand" 
+                   FontSize="Medium"/>
+
+            <StackLayout Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
+                <Button x:Name="buttonSumaDodaj1" 
+                    Text=" dodaj " 
+                    Clicked="buttonSumaDodaj1_Clicked"/>
+                <Button x:Name="buttonSumaDodajCancel"
+                        Text=" cancel "    
+                        Clicked="buttonSumaDodajCancel_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+
+
+
+        <StackLayout x:Name="stackLayoutSumaEdytuj" IsVisible="false" BackgroundColor="SlateGray">
+            <Label Text="zaznacz co edytować" 
+                   HorizontalOptions="CenterAndExpand" 
+                   FontSize="Medium"/>
+            <Label x:Name="labelSumaEdytuj"
+                   Text="" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="Medium"/>
+
+            <StackLayout Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
+                <Button x:Name="buttonSumaEdytuj1" 
+                    Text=" edytuj " 
+                    Clicked="buttonSumaEdytuj1_Clicked"/>
+                <Button x:Name="buttonSumaEdytujCancel"
+                        Text=" cancel "    
+                        Clicked="buttonSumaEdytujCancel_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+                     
+        
+        
         
         <StackLayout x:Name="stackLayoutSumaUsun" IsVisible="false" BackgroundColor="MediumVioletRed">
-            <Label Text="zaznacz co usunac" 
+            <Label Text="zaznacz co usunąć" 
                    HorizontalOptions="CenterAndExpand" 
                    FontSize="Medium"/>
             <Label x:Name="labelSumaUsun"
@@ -21,7 +63,8 @@
                    HorizontalOptions="CenterAndExpand"
                    FontSize="Medium"/>
             
-            <StackLayout Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
+            <StackLayout x:Name="stackLayoutSumaUsun1" IsVisible="true"
+                Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
                 <Button x:Name="buttonSumaUsun1" 
                     Text=" usuń " 
                     Clicked="buttonSumaUsun1_Clicked"/>                
@@ -29,6 +72,18 @@
                         Text=" cancel "    
                         Clicked="buttonSumaUsunCancel_Clicked"/>
             </StackLayout>
+
+            <StackLayout x:Name="stackLayoutSumaUsun2" IsVisible="false"
+                Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
+                <Button x:Name="buttonSumaUsun2" 
+                    Text=" na pewno usunąć " 
+                    Clicked="buttonSumaUsun2_Clicked"/>
+                <Button x:Name="buttonSumaUsunCancel2"
+                        Text=" cancel "    
+                        Clicked="buttonSumaUsunCancel2_Clicked"/>
+            </StackLayout>
+
+
         </StackLayout>                       
                 
                 
