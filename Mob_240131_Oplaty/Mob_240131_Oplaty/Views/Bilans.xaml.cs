@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Mob_240131_Oplaty.Views
 {
   [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class Prad : ContentPage
+  public partial class Bilans : ContentPage
   {
-    public Prad()
+    public Bilans()
     {
       InitializeComponent();
     }

@@ -17,13 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\Gaz.xaml">
+    <EmbeddedResource Update="Views\Bilans.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Prad.xaml">
+    <EmbeddedResource Update="Views\Miesiac.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Spoldz.xaml">
+    <EmbeddedResource Update="Views\Odczyt.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Suma.xaml">

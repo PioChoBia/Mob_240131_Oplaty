@@ -14,6 +14,8 @@ namespace Mob_240131_Oplaty.Views
   public partial class Suma : ContentPage
   {
 
+    public Dane dane1=new Dane();
+
     public List<Dane> listDane = new List<Dane>
     {
        new Dane {
@@ -28,7 +30,7 @@ namespace Mob_240131_Oplaty.Views
           CWStan = 57,
 
           //internet
-          Koba = 40,
+          Internet = 40,
 
           //gaz
           GazOplata = 8.758,
@@ -57,7 +59,7 @@ namespace Mob_240131_Oplaty.Views
           CWStan=61,
 
           //internet
-          Koba=40,
+          Internet=40,
 
           //gaz
           GazOplata=8.758,
@@ -130,11 +132,11 @@ namespace Mob_240131_Oplaty.Views
 
       //opłaty stałe
       w.WierszOplatyStale1 = 
-        "czynszSpółdzielni " + d1.Czynsz.ToString(".00") + " + Koba " + d1.Koba.ToString(".00")+" +";
+        "czynszSpółdzielni " + d1.Czynsz.ToString(".00") + " + Koba " + d1.Internet.ToString(".00")+" +";
       w.WierszOplatyStale2 =
          "licznikGaz " + d1.GazOplata.ToString(".000") + 
          " + licznikPrąd " + d1.PradOplata.ToString(".000");
-      w.OplatyStale = d1.Czynsz + d1.Koba + d1.GazOplata + d1.PradOplata;
+      w.OplatyStale = d1.Czynsz + d1.Internet + d1.GazOplata + d1.PradOplata;
       w.OplatyStale3 = w.OplatyStale / 3;
       w.WierszOplatyStale0 = "OplatyStale= " + w.OplatyStale.ToString(".00") +
         "   OP/3= " + w.OplatyStale3.ToString(".00");

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Mob_240131_Oplaty.Views
 {
   [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class Gaz : ContentPage
+  public partial class Miesiac : ContentPage
   {
-    public Gaz()
+    public Miesiac()
     {
       InitializeComponent();
     }

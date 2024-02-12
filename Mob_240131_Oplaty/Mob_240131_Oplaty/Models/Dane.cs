@@ -17,7 +17,7 @@ namespace Mob_240131_Oplaty.Models
     public double CWCena { get; set; }
 
     //internet
-    public double Koba { get; set; }
+    public double Internet { get; set; }
 
     //gaz
     public double GazOplata { get; set; }
