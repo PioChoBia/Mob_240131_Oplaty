@@ -20,20 +20,19 @@ namespace Mob_240131_Oplaty.Models
     public double Internet { get; set; }
 
     //gaz
+    public int GazStan { get; set; }
     public double GazOplata { get; set; }
     public double GazCena { get; set; }
-    public int GazStan { get; set; }
 
     //prąd
-    public double PradOplata { get; set; }
-    public double PradCena { get; set; }
     public int PradStan { get; set; }
+    public double PradOplata { get; set; }
+    public double PradCena { get; set; }  
 
     //za pokoje
     public double PokojDuzyCena { get; set; }
     public double PokojSredniCena { get; set; }
     public double PokojMalyCena { get; set; }
-
 
   }
 }

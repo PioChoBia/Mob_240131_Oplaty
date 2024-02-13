@@ -13,8 +13,11 @@
                 <Button x:Name="buttonOdczytUsun" Text=" usuń " Clicked="buttonOdczytUsun_Clicked"/>
         </StackLayout>
 
-            
-        <StackLayout x:Name="stackLayoutOdczytDodaj" IsVisible="false" Margin="3" >
+
+        <Label x:Name="labelTest" Text="test" IsVisible="true"/>
+        <Label x:Name="labelTest1" Text="test" IsVisible="true"/>
+
+        <StackLayout x:Name="stackLayoutOdczytDodaj" IsVisible="false" Margin="3">
 
             
             <Button x:Name="buttonOdczytDodajLiczniki" Text="liczniki" IsVisible="false"
@@ -22,7 +25,7 @@
 
             
             <StackLayout  x:Name="stackLayoutOdczytDodajLiczniki" IsVisible="true"
-                BackgroundColor="LightSteelBlue">
+                BackgroundColor="LightSteelBlue" Padding="3">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="data odczytu" WidthRequest="100"/>
                     <DatePicker x:Name="datePickerOdczytDodaj" 
@@ -70,7 +73,7 @@
 
             
             <StackLayout x:Name="stackLayoutOdczytDodajInne" IsVisible="false"                            
-                BackgroundColor="LightSteelBlue">                
+                BackgroundColor="LightSteelBlue" Padding="3">                
                 <StackLayout Orientation="Horizontal">
                     <Label Text="gaz opłata za licznik" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajGazLicznik" 
@@ -121,7 +124,7 @@
 
 
             <StackLayout x:Name="stackLayoutOdczytDodajCzynsze" IsVisible="false"                            
-                BackgroundColor="LightSteelBlue">
+                BackgroundColor="LightSteelBlue" Padding="3">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="spółdzielnia" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajCzynsz" 
