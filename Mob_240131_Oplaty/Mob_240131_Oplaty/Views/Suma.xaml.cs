@@ -33,12 +33,12 @@ namespace Mob_240131_Oplaty.Views
           Internet = 40,
 
           //gaz
-          GazOplata = 8.758,
+          GazLicznik = 8.758,
           GazCena = 3.4686,
           GazStan = 321,
 
           //prad
-          PradOplata = 12.25,
+          PradLicznik = 12.25,
           PradCena = .80043,
           PradStan = 10080,
 
@@ -62,12 +62,12 @@ namespace Mob_240131_Oplaty.Views
           Internet=40,
 
           //gaz
-          GazOplata=8.758,
+          GazLicznik=8.758,
           GazCena=3.4686,
           GazStan=325,
 
           //prad
-          PradOplata=12.25,
+          PradLicznik=12.25,
           PradCena=.80043,
           PradStan=10150,
 
@@ -134,12 +134,12 @@ namespace Mob_240131_Oplaty.Views
       w.WierszOplatyStale1 = 
         "czynszSpółdzielni " + d1.Czynsz.ToString(".00") + " + Koba " + d1.Internet.ToString(".00")+" +";
       w.WierszOplatyStale2 =
-         "licznikGaz " + d1.GazOplata.ToString(".000") + 
-         " + licznikPrąd " + d1.PradOplata.ToString(".000");
-      w.OplatyStale = d1.Czynsz + d1.Internet + d1.GazOplata + d1.PradOplata;
+         "licznikGaz " + d1.GazLicznik.ToString(".000") + 
+         " + licznikPrąd " + d1.PradLicznik.ToString(".000");
+      w.OplatyStale = d1.Czynsz + d1.Internet + d1.GazLicznik + d1.PradLicznik;
       w.OplatyStale3 = w.OplatyStale / 3;
       w.WierszOplatyStale0 = "OplatyStale= " + w.OplatyStale.ToString(".00") +
-        "   OP/3= " + w.OplatyStale3.ToString(".00");
+        "   OS/3= " + w.OplatyStale3.ToString(".00");
 
 
       //opłaty zmienne

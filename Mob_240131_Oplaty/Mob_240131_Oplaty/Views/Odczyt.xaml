@@ -6,16 +6,77 @@
 
     <StackLayout>
 
+        <ListView x:Name="listViewDane1" Margin="2" RowHeight="500"  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout BackgroundColor="#1515" >
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="data odczytu" WidthRequest="100"/>
+                                <DatePicker x:Name="datePickerOdczytDodaj" 
+             FontSize="Medium"    
+             Format=" dd - MM - yyyy" Date="{Binding SelectedFromDate}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="za miesiąc" WidthRequest="100"/>
+                                <Picker x:Name="pickerOdczytDodajMiesiac" 
+             FontSize="Medium"  WidthRequest="100"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="gaz" FontAttributes="Bold" WidthRequest="100"/>
+                                <Entry x:Name="entryOdczytDodajGazStan" 
+         WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+         Completed="entryOdczytDodajGazStan_Completed"/>
+                                <Label x:Name="labelOdczytDodajGazStanBylo"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="prąd" FontAttributes="Bold" WidthRequest="100"/>
+                                <Entry x:Name="entryOdczytDodajPradStan" 
+         WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+         Completed="entryOdczytDodajPradStan_Completed"/>
+                                <Label x:Name="labelOdczytDodajPradStanBylo"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="ciepła woda" FontAttributes="Bold" WidthRequest="100"/>
+                                <Entry x:Name="entryOdczytDodajCWStan" 
+         WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+         Completed="entryOdczytDodajCWStan_Completed"/>
+                                <Label x:Name="labelOdczytDodajCWStanBylo"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="zimna woda" FontAttributes="Bold" WidthRequest="100"/>
+                                <Entry x:Name="entryOdczytDodajZWStan" 
+         WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+         Completed="entryOdczytDodajZWStan_Completed"/>
+                                <Label x:Name="labelOdczytDodajZWStanBylo"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <StackLayout  x:Name="stackLayoutOdczytDodajEdytujUsun" IsVisible="true"
                     Orientation="Horizontal" HorizontalOptions="Center">
                 <Button x:Name="buttonOdczytDodaj" Text=" dodaj " Clicked="buttonOdczytDodaj_Clicked"/>
                 <Button x:Name="buttonOdczytEdytuj" Text=" edytuj " Clicked="buttonOdczytEdytuj_Clicked"/>
                 <Button x:Name="buttonOdczytUsun" Text=" usuń " Clicked="buttonOdczytUsun_Clicked"/>
         </StackLayout>
-
-
-        <Label x:Name="labelTest" Text="test" IsVisible="true"/>
-        <Label x:Name="labelTest1" Text="test" IsVisible="true"/>
 
         <StackLayout x:Name="stackLayoutOdczytDodaj" IsVisible="false" Margin="3">
 
@@ -42,28 +103,28 @@
                     <Entry x:Name="entryOdczytDodajGazStan" 
                         WidthRequest="100" Placeholder="0" Keyboard="Numeric"
                         Completed="entryOdczytDodajGazStan_Completed"/>
-                    <Label x:Name="labelOdczytDodajGazStanBylo" Text="12345"/>
+                    <Label x:Name="labelOdczytDodajGazStanBylo"/>
                 </StackLayout>                 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="prąd" FontAttributes="Bold" WidthRequest="100"/>
                     <Entry x:Name="entryOdczytDodajPradStan" 
                         WidthRequest="100" Placeholder="0" Keyboard="Numeric"
                         Completed="entryOdczytDodajPradStan_Completed"/>
-                    <Label x:Name="labelOdczytDodajPradStanBylo" Text="12345" />
+                    <Label x:Name="labelOdczytDodajPradStanBylo"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="ciepła woda" FontAttributes="Bold" WidthRequest="100"/>
                     <Entry x:Name="entryOdczytDodajCWStan" 
                         WidthRequest="100" Placeholder="0" Keyboard="Numeric"
                         Completed="entryOdczytDodajCWStan_Completed"/>
-                    <Label x:Name="labelOdczytDodajCWStanBylo" Text="12345"/>
+                    <Label x:Name="labelOdczytDodajCWStanBylo"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="zimna woda" FontAttributes="Bold" WidthRequest="100"/>
                     <Entry x:Name="entryOdczytDodajZWStan" 
                         WidthRequest="100" Placeholder="0" Keyboard="Numeric"
                         Completed="entryOdczytDodajZWStan_Completed"/>
-                    <Label x:Name="labelOdczytDodajZWStanBylo" Text="12345"/>
+                    <Label x:Name="labelOdczytDodajZWStanBylo"/>
                 </StackLayout>
             </StackLayout>
             
@@ -77,43 +138,43 @@
                 <StackLayout Orientation="Horizontal">
                     <Label Text="gaz opłata za licznik" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajGazLicznik" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajGazLicznik_Completed"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="gaz cena 1 m3" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajGazCena" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajGazCena_Completed"/>
                 </StackLayout>                                                                                    
                 <StackLayout Orientation="Horizontal">
                     <Label Text="prąd opłata za licznik" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajPradLicznik" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajPradLicznik_Completed"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="prąd cena 1 kWh" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajPradCena" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajPradCena_Completed"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="zimna woda cena 1m3" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajZWCena" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajZWCena_Completed"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="ciepła woda cena 1 m3" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajCWCena" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajCWCena_Completed"/>
                 </StackLayout>                          
                 <StackLayout Orientation="Horizontal">
                     <Label Text="internet" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajInternet" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajInternet_Completed"/>
                 </StackLayout>
             </StackLayout>
@@ -128,25 +189,25 @@
                 <StackLayout Orientation="Horizontal">
                     <Label Text="spółdzielnia" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajCzynsz" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajCzynsz_Completed"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="pokój duży" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajPokojDuzyCena" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajPokojDuzyCena_Completed"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="pokój średni" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajPokojSredniCena" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajPokojSredniCena_Completed"/>
                 </StackLayout>                 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="pokój mały" WidthRequest="150"/>
                     <Entry x:Name="entryOdczytDodajPokojMalyCena" 
-                        WidthRequest="100" Placeholder="0" Keyboard="Numeric"
+                        WidthRequest="100" Keyboard="Numeric"
                         Completed="entryOdczytDodajPokojMalyCena_Completed"/>
                 </StackLayout>                 
             </StackLayout>

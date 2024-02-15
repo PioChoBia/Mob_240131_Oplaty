@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Text;
 
 namespace Mob_240131_Oplaty.Models
@@ -21,18 +23,23 @@ namespace Mob_240131_Oplaty.Models
 
     //gaz
     public int GazStan { get; set; }
-    public double GazOplata { get; set; }
+    public double GazLicznik { get; set; }
     public double GazCena { get; set; }
 
     //prąd
     public int PradStan { get; set; }
-    public double PradOplata { get; set; }
+    public double PradLicznik { get; set; }
     public double PradCena { get; set; }  
 
     //za pokoje
     public double PokojDuzyCena { get; set; }
     public double PokojSredniCena { get; set; }
     public double PokojMalyCena { get; set; }
+
+
+
+
+
 
   }
 }
