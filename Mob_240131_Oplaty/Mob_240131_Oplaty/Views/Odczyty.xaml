@@ -16,7 +16,7 @@
         
         
             <StackLayout x:Name="stackLayoutOdczytyDodaj" IsVisible="false" BackgroundColor="AntiqueWhite" Padding="5">
-                <Label Text="na pewno dodać nowy odczyt ?" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                <Label Text="wpisz dane i kliknij dodaj" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
                 <StackLayout Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
                     <Button x:Name="buttonOdczytyDodaj1" Text=" dodaj " Clicked="buttonOdczytyDodaj1_Clicked"/>
                     <Button x:Name="buttonOdczytyDodajCancel" Text=" cancel " Clicked="buttonOdczytyDodajCancel_Clicked"/>
@@ -90,7 +90,7 @@
 
 
 
-      <StackLayout x:Name="stackLayoutOdczytyDane" Padding="5" BackgroundColor="#1515" IsVisible="false">
+      <StackLayout x:Name="stackLayoutOdczytyDane" Padding="5" BackgroundColor="#1515"  IsVisible="false">
             
         <StackLayout Orientation="Horizontal">
             <Label Text="data odczytu" WidthRequest="100"/>
@@ -100,7 +100,7 @@
 
         <StackLayout Orientation="Horizontal">
             <Label Text="za miesiąc" WidthRequest="100"/>
-            <Picker x:Name="pickerOdczytyMiesiac" FontSize="Medium"  />
+            <Picker x:Name="pickerOdczytyMiesiac" FontSize="Medium"  WidthRequest="200"/>
         </StackLayout>
 
         <Label Text="------------------------------------------------------" HorizontalOptions="Center"/>
@@ -161,8 +161,7 @@
 
         <StackLayout Orientation="Horizontal">
             <Label Text="zimna woda cena 1m3" WidthRequest="150"/>
-            <Entry x:Name="entryOdczytyZWCena" WidthRequest="100" 
-                                    Keyboard="Numeric" />
+            <Entry x:Name="entryOdczytyZWCena" WidthRequest="100"  Keyboard="Numeric" />
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
