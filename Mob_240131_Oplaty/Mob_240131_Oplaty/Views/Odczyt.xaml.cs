@@ -17,69 +17,117 @@ namespace Mob_240131_Oplaty.Views
   public partial class Odczyt : ContentPage
   {
     Dane dane= new Dane();
-    List<Dane> listDane = new List<Dane>();
-    Plik plik = new Plik();
+   List<Dane> listDane = new List<Dane>//();
+    {
+       new Dane {
+          Data = DateTime.Now,
+          Miesiac = DateTime.Now.Month,
+
+          //spoldzielnia
+          Czynsz = 534.56,
+          ZWCena = 8.2,
+          ZWStan = 106,
+          CWCena = 48.98,
+          CWStan = 57,
+
+          //internet
+          Internet = 40,
+
+          //gaz
+          GazLicznik = 8.758,
+          GazCena = 3.4686,
+          GazStan = 321,
+
+          //prad
+          PradLicznik = 12.25,
+          PradCena = .80043,
+          PradStan = 10080,
+
+          //pokoje
+          PokojDuzyCena = 472.5,
+          PokojSredniCena = 399,
+          PokojMalyCena = 340,
+        },
+       new Dane{
+          Data=DateTime.Now,
+          Miesiac=DateTime.Now.Month,
+          
+          //spoldzielnia
+          Czynsz=534.56,
+          ZWCena=8.2,
+          ZWStan=111,
+          CWCena=48.98,
+          CWStan=61,
+
+          //internet
+          Internet=40,
+
+          //gaz
+          GazLicznik=8.758,
+          GazCena=3.4686,
+          GazStan=325,
+
+          //prad
+          PradLicznik=12.25,
+          PradCena=.80043,
+          PradStan=10150,
+
+          //pokoje
+          PokojDuzyCena=472.5,
+          PokojSredniCena=399,
+          PokojMalyCena=340,
+        }
+
+    };
+
+
+
+
+
+
+
+
+    Plik plik = new Plik(); 
+    int nrTapped = 0;
+    Wyliczenia wyliczenia = new Wyliczenia();
+    List<Wyliczenia> listWyliczenia = new List<Wyliczenia>();
+     
+
+
+
 
 
     public Odczyt()
     {
       InitializeComponent();
-          
 
-      listDane = plik.Wczytaj();
+      //listDane = plik.Wczytaj();
+      listViewDane.ItemsSource = listDane;
 
-      listViewDane1.ItemsSource= listDane;
+
+      listWyliczenia = WyliczDane(listDane);
+      listViewWyliczenia.ItemsSource = listWyliczenia;
+
+
+
 
     }
 
-
-
-
-
-
-    private void Zapisz(List<Dane> listDane0)
+    List<Wyliczenia> WyliczDane(List<Dane> listDane0)
     {
-      List<string> listLinia= new List<string>();
-
-      NumberFormatInfo nfi = new NumberFormatInfo();
-      nfi.NumberDecimalSeparator = ".";
-
-      string basePath0 = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-      string fileName0 = Path.Combine(basePath0, "plik102.txt");
-
-      foreach (var item in listDane0)
+      List<Wyliczenia> listWyliczenia0 = new List<Wyliczenia>();
+      
+      if (listDane0.Count >=2 )
       {
-        string linia = "";              
-
-        linia += item.Data.ToShortDateString()+" ";
-        linia += item.Miesiac.ToString(nfi) + " ";
-
-
-        linia += item.Czynsz.ToString(nfi) + " ";
-        linia += item.ZWStan.ToString(nfi) + " ";
-        linia += item.ZWCena.ToString(nfi) + " ";
-        linia += item.CWStan.ToString(nfi) + " ";
-        linia += item.CWCena.ToString(nfi) + " ";
-
-        linia += item.Internet.ToString(nfi) + " ";
-
-        linia += item.GazStan.ToString(nfi) + " ";
-        linia += item.GazLicznik.ToString(nfi) + " ";
-        linia += item.GazCena.ToString(nfi) + " ";
-
-        linia += item.PradStan.ToString(nfi) + " ";
-        linia += item.PradLicznik.ToString(nfi) + " ";
-        linia += item.PradCena.ToString(nfi) + " ";
-
-        linia += item.PokojDuzyCena.ToString(nfi) + " ";
-        linia += item.PokojSredniCena.ToString(nfi) + " ";
-        linia += item.PokojMalyCena.ToString(nfi);
-
-        listLinia.Add(linia);
+        for (int i = 1; i < listDane0.Count; i++)
+        {
+          listWyliczenia0.Add( wyliczenia.WyliczMiesiac(listDane0[i] , listDane0[i - 1]) );
+        }
       }
 
-      File.WriteAllLines(fileName0, listLinia);
+      return listWyliczenia0;
     }
+
 
 
 
@@ -120,6 +168,9 @@ namespace Mob_240131_Oplaty.Views
       //w czynsze wpisuje jako biezace
       entryOdczytDodajCzynsz.Text = dane0.Czynsz.ToString();
       entryOdczytDodajInternet.Text = dane0.Internet.ToString();
+      entryOdczytDodajPokojDuzyCena.Text = dane0.PokojDuzyCena.ToString();
+      entryOdczytDodajPokojSredniCena.Text = dane0.PokojSredniCena.ToString();
+      entryOdczytDodajPokojMalyCena.Text = dane0.PokojMalyCena.ToString();
     }
 
 
@@ -188,26 +239,7 @@ namespace Mob_240131_Oplaty.Views
     }
 
 
-    private void entryOdczytDodajPradStan_Completed(object sender, EventArgs e)
-    {
-      int i = int.Parse(entryOdczytDodajPradStan.Text);
-      if (i < listDane[listDane.Count - 1].PradStan)
-      {
-        entryOdczytDodajPradStan.BackgroundColor = Color.Red;
-        DisplayAlert("bład",
-         "wpisany stan: "+ entryOdczytDodajPradStan.Text+" jest mniejszy niż był\npopraw",
-         "OK");
-      }
-      else
-      {
-        dane.PradStan = i;
-        entryOdczytDodajPradStan.BackgroundColor = Color.LightSteelBlue;
-      }
 
-
-
-
-    }
 
 
 
@@ -295,7 +327,8 @@ namespace Mob_240131_Oplaty.Views
 
     private void buttonOdczytDodajOK_Clicked(object sender, EventArgs e)
     {
-      //Zapisz
+      plik.Zapisz(listDane);
+
     }
 
 
@@ -329,6 +362,30 @@ namespace Mob_240131_Oplaty.Views
 
     }
 
+    private void entryOdczytDodajGazStan_TextChanged(object sender, TextChangedEventArgs e)
+    {
 
-  }
+      int i = int.Parse(entryOdczytDodajGazStan.Text);
+      if (i < listDane[listDane.Count - 1].GazStan)
+      {
+        entryOdczytDodajGazStan.BackgroundColor = Color.Red;
+        DisplayAlert("bład",
+         "wpisany stan: " + entryOdczytDodajGazStan.Text + " jest mniejszy niż był\npopraw",
+         "OK");
+      }
+      else
+      {
+        dane.PradStan = i;
+        entryOdczytDodajGazStan.BackgroundColor = Color.LightSteelBlue;
+      }
+
+
+
+    }
+
+    private void listViewWyliczenia_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+
+        }
+    }
 }

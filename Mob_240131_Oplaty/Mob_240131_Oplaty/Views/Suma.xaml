@@ -108,7 +108,6 @@
                             <Label Text="{Binding WierszGaz}"/>
                             <Label Text="{Binding WierszPrad}"/>
 
-
                             <Label Text="{Binding WierszPokojDuzy0}" BackgroundColor="#d3d3d3"/>
                             <Label Text="{Binding WierszPokojDuzy1}"/>
                             <Label Text="{Binding WierszPokojSredni0}" BackgroundColor="#d3d3d3"/>

@@ -9,6 +9,7 @@ namespace Mob_240131_Oplaty.Models
   public class Plik
   {
 
+
     public List<Dane> Wczytaj()
     {
       string[] tabelaLinia;
@@ -53,9 +54,9 @@ namespace Mob_240131_Oplaty.Models
 
         listDane0.Add(dane);
       }
-
       return listDane0;
     }
+
 
 
     public void Zapisz(List<Dane> listDane0)
@@ -97,7 +98,6 @@ namespace Mob_240131_Oplaty.Models
 
         listLinia.Add(linia);
       }
-
       File.WriteAllLines(fileName0, listLinia);
     }
 
