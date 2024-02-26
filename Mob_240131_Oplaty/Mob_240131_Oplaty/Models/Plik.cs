@@ -21,7 +21,7 @@ namespace Mob_240131_Oplaty.Models
 
       string basePath0 = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
       string fileName0 = Path.Combine(basePath0, "plik102.txt");
-
+            
       tabelaLinia = File.ReadAllLines(fileName0);
 
       foreach (string line in tabelaLinia)

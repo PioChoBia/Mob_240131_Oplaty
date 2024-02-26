@@ -37,13 +37,13 @@
 
             <StackLayout x:Name="stackLayoutOdczytyUsun" IsVisible="false" BackgroundColor="MediumVioletRed">
                 <Label Text="zaznacz co usunąć" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
-                <Label x:Name="labelOdczytyUsun" Text="" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+                <Label x:Name="labelOdczytyUsun" Text="" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
                 <StackLayout x:Name="stackLayoutOdczytyUsun1" IsVisible="true" Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
                     <Button x:Name="buttonOdczytyUsun1" Text=" usuń " Clicked="buttonOdczytyUsun1_Clicked"/>
                     <Button x:Name="buttonOdczytyUsunCancel" Text=" cancel " Clicked="buttonOdczytyUsunCancel_Clicked"/>
                 </StackLayout>
                 <StackLayout x:Name="stackLayoutOdczytyUsun2" IsVisible="false" Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="buttonOdczytyUsun2" Text=" na pewno usunąć " Clicked="buttonOdczytyUsun2_Clicked"/>
+                    <Button x:Name="buttonOdczytyUsun2" Text=" na pewno usunąć ? " Clicked="buttonOdczytyUsun2_Clicked"/>
                     <Button x:Name="buttonOdczytyUsunCancel2" Text=" cancel " Clicked="buttonOdczytyUsunCancel2_Clicked"/>
                 </StackLayout>
             </StackLayout>
@@ -54,14 +54,13 @@
 
 
 
-            <ListView x:Name="listViewOdczytyWyliczenia" IsVisible="true" Margin="2" RowHeight="500" 
+            <ListView x:Name="listViewOdczytyWyliczenia" IsVisible="true" Margin="2" RowHeight="540"
                       ItemTapped="listViewOdczytyWyliczenia_ItemTapped" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="#1515" >
-                                <Label Text="---------------------------" HorizontalOptions="Center"/>
-
+                            <StackLayout BackgroundColor="#1515">
+                                <Label Text="-- -- -- -- -- -- -- -- --" HorizontalOptions="Center"/>
                                 <Label Text="{Binding WierszDataMiesiac}" BackgroundColor="#b1a7a6"/>
 
                                 <Label Text="{Binding WierszOplatyStale0}" BackgroundColor="#d3d3d3"/>
@@ -107,29 +106,25 @@
                 
         <StackLayout Orientation="Horizontal">
             <Label Text="gaz" FontAttributes="Bold" WidthRequest="100"/>
-            <Entry x:Name="entryOdczytyGazStan" WidthRequest="100" Placeholder="0" 
-                                    Keyboard="Numeric"/>
+            <Entry x:Name="entryOdczytyGazStan" WidthRequest="100" Keyboard="Numeric"/>
             <Label x:Name="labelOdczytyGazStanBylo"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="prąd" FontAttributes="Bold" WidthRequest="100"/>
-            <Entry x:Name="entryOdczytyPradStan" WidthRequest="100" Placeholder="0" 
-                                    Keyboard="Numeric" />
+            <Entry x:Name="entryOdczytyPradStan" WidthRequest="100" Keyboard="Numeric" />
             <Label x:Name="labelOdczytyPradStanBylo"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="ciepła woda" FontAttributes="Bold" WidthRequest="100"/>
-            <Entry x:Name="entryOdczytyCWStan" WidthRequest="100" Placeholder="0" 
-                                Keyboard="Numeric" />
+            <Entry x:Name="entryOdczytyCWStan" WidthRequest="100" Keyboard="Numeric" />
             <Label x:Name="labelOdczytyCWStanBylo"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="zimna woda" FontAttributes="Bold" WidthRequest="100"/>
-            <Entry x:Name="entryOdczytyZWStan" WidthRequest="100" Placeholder="0" 
-                                    Keyboard="Numeric" />
+            <Entry x:Name="entryOdczytyZWStan" WidthRequest="100" Keyboard="Numeric" />
             <Label x:Name="labelOdczytyZWStanBylo"/>
         </StackLayout>
 

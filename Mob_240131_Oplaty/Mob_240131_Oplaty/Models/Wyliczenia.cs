@@ -109,6 +109,7 @@ namespace Mob_240131_Oplaty.Models
       //sortuje, układa od ostatniego jako pierwszy do pierwszego
       for (int i = 0; i < lw0.Count; i++)
       {
+        lw0[lw0.Count - 1 - i].WierszDataMiesiac = i.ToString()+" "+ lw0[lw0.Count - 1 - i].WierszDataMiesiac;
         lw1.Add(lw0[lw0.Count - 1 - i]);
       }
  
