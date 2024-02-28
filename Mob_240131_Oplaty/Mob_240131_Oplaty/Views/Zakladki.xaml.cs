@@ -19,14 +19,15 @@ namespace Mob_240131_Oplaty.Views
     public Zakladki()
     {
       var odczyty = new NavigationPage(new Odczyty()) { Title = "odczyty" };
+      var miesiace = new NavigationPage(new Miesiace()) { Title = "miesiące" };
       var bilanse = new NavigationPage(new Bilans()) { Title = "bilanse" };
       var suma = new NavigationPage(new Suma()) { Title = "suma" };
 
       Children.Add(odczyty);
+      Children.Add(miesiace);
       Children.Add(bilanse);
       Children.Add(suma);
  
-
 
 
       InitializeComponent();

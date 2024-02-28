@@ -13,6 +13,7 @@ namespace Mob_240131_Oplaty.Views
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class Odczyty : ContentPage
   {
+  
     List<Dane> listDane = new List<Dane>();
     /*
     {
@@ -74,90 +75,74 @@ namespace Mob_240131_Oplaty.Views
           PokojSredniCena=399,
           PokojMalyCena=340,
         }
-    };
+    };    
     */
 
 
-
-    Plik plik = new Plik();
+    List<DanePokaz> listDanePokaz=new List<DanePokaz> ();
     int nrTapped = 0;
-    List<Wyliczenia> listWyliczenia = new List<Wyliczenia>();
+    
 
 
 
     public Odczyty()
     {
       InitializeComponent();
-
-      OdczytyPokazWyliczenia();
-
+      OdczytyDanePokaz();
     }
 
 
-    private void OdczytyPokazWyliczenia()
-    {
-      Wyliczenia wyliczenia0 = new Wyliczenia();
+    private void OdczytyDanePokaz()
+    {  
+      Dane dane0 = new Dane();
+      DanePokaz danePokaz0 = new DanePokaz();
 
-      listDane.Clear();
-      listDane = plik.Wczytaj();
+      //wczytuje listę danych z poszczególnych miesięcy z pliku
+      listDane = dane0.Wczytaj();
 
-      listWyliczenia.Clear();
-      for (int i = 0; i < listDane.Count-1; i++)
-      {
-        listWyliczenia.Add(wyliczenia0.WyliczMiesiac(listDane[i+1], listDane[i]));
-      }
-
-      listWyliczenia = wyliczenia0.SortujListWyliczenia(listWyliczenia);
-      listViewOdczytyWyliczenia.ItemsSource = listWyliczenia;
+      //obrabiam listę danych na ekran
+      listDanePokaz = danePokaz0.ListDanePokazObrob(listDane);
+      listViewOdczytyDanePokaz.ItemsSource = listDanePokaz;
     }
 
 
-
-
-    private void OdczytyPokazDaneDodajEdytuj(List<Dane> listDane,bool takNaDopisz)
+    private void OdczytyDanePokazDodajEdytuj(bool takNaDopisz)
     {
       List<string> listPickerMiesiac = new List<string>
-      {
+      {        
         "styczeń","luty","marzec","kwiecień","maj","czerwiec",
         "lipiec","sierpień","wrzesień","październik","listopad","grudzień"
       };
-
       Dane dane0 = new Dane();
       if (takNaDopisz)
       {           
-
         pickerOdczytyMiesiac.Title = listPickerMiesiac.ElementAt(DateTime.Today.Month - 1);
         pickerOdczytyMiesiac.ItemsSource = listPickerMiesiac;
-
-        dane0 = listDane[listDane.Count - 1];
-        labelOdczytyGazStanBylo.Text=dane0.GazStan.ToString();
-        dane0.GazStan = 0;        
-        labelOdczytyPradStanBylo.Text = dane0.PradStan.ToString();
-        dane0.PradStan = 0;
+        dane0 = listDane[0];
+        labelOdczytyGazStanBylo.Text=dane0.GazStan.ToString();        
+        labelOdczytyPradStanBylo.Text = dane0.PradStan.ToString();        
         labelOdczytyZWStanBylo.Text = dane0.ZWStan.ToString();
-        dane0.ZWStan = 0;
         labelOdczytyCWStanBylo.Text = dane0.CWStan.ToString();
-        dane0.CWStan = 0;
+        entryOdczytyGazStan.Text = "";
+        entryOdczytyPradStan.Text = "";
+        entryOdczytyZWStan.Text = "";
+        entryOdczytyCWStan.Text = "";
       }
       else
       {
-        dane0 = listDane[nrTapped - 1];
-
+        dane0 = listDane[nrTapped];
         datePickerOdczyty.Date = dane0.Data;
-
         pickerOdczytyMiesiac.Title = listPickerMiesiac.ElementAt(dane0.Miesiac);
         pickerOdczytyMiesiac.ItemsSource = listPickerMiesiac;
-
         labelOdczytyGazStanBylo.Text = "";
         labelOdczytyPradStanBylo.Text = "";
         labelOdczytyZWStanBylo.Text = "";
         labelOdczytyCWStanBylo.Text = "";
-      }
-            
-      entryOdczytyGazStan.Text = dane0.GazStan.ToString() ;
-      entryOdczytyPradStan.Text = dane0.PradStan.ToString();
-      entryOdczytyZWStan.Text = dane0.ZWStan.ToString();
-      entryOdczytyCWStan.Text = dane0.CWStan.ToString();
+        entryOdczytyGazStan.Text = dane0.GazStan.ToString();
+        entryOdczytyPradStan.Text = dane0.PradStan.ToString();
+        entryOdczytyZWStan.Text = dane0.ZWStan.ToString();
+        entryOdczytyCWStan.Text = dane0.CWStan.ToString();
+      }          
 
       entryOdczytyGazLicznik.Text = dane0.GazLicznik.ToString();
       entryOdczytyGazCena.Text = dane0.GazCena.ToString();
@@ -173,32 +158,34 @@ namespace Mob_240131_Oplaty.Views
     }
 
 
-    private void listViewOdczytyWyliczenia_ItemTapped(object sender, ItemTappedEventArgs e)
+    private void listViewOdczytyDanePokaz_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-      Wyliczenia wyliczeniaTapped = e.Item as Wyliczenia;
-      nrTapped = listWyliczenia.IndexOf(wyliczeniaTapped);
-      labelOdczytyUsun.Text = wyliczeniaTapped.WierszDataMiesiac;
-      labelOdczytyEdytuj.Text = wyliczeniaTapped.WierszDataMiesiac;
+      DanePokaz danePokazTapped = e.Item as DanePokaz;
+      nrTapped = listDanePokaz.IndexOf(danePokazTapped);
+      labelOdczytyUsun.Text = danePokazTapped.WierszDataMiesiac;
+      labelOdczytyEdytuj.Text = danePokazTapped.WierszDataMiesiac;
     }
 
+  
 
+
+    //tu dodawanie-------------------------------------------------------------------------
     private void buttonOdczytyDodaj_Clicked(object sender, EventArgs e)
     {
       stackLayoutOdczytyDodajEdytujUsun.IsVisible = false;
-      listViewOdczytyWyliczenia.IsVisible = false;
+      listViewOdczytyDanePokaz.IsVisible= false;
       stackLayoutOdczytyDodaj.IsVisible = true;
-      OdczytyPokazDaneDodajEdytuj(listDane, true);
-      stackLayoutOdczytyDane.IsVisible = true;
+      OdczytyDanePokazDodajEdytuj(true);
+      stackLayoutOdczytyDanePokazDodajEdytuj.IsVisible = true;
     }
 
 
     private void buttonOdczytyDodaj1_Clicked(object sender, EventArgs e)
     {
       Dane dane0 = new Dane();
-
       //odczytuje dane z formularza
       dane0.Data = datePickerOdczyty.Date;
-      //jak nie wybrano miesiaca daje -1
+      //jak nie wybrano miesiaca dostaje -1
       if (pickerOdczytyMiesiac.SelectedIndex==-1)
       {
         dane0.Miesiac = dane0.Data.Month;
@@ -207,11 +194,13 @@ namespace Mob_240131_Oplaty.Views
       {
         dane0.Miesiac = pickerOdczytyMiesiac.SelectedIndex;
       }           
-      dane0.Czynsz = double.Parse(entryOdczytyCzynsz.Text);
+
       dane0.ZWStan = int.Parse(entryOdczytyZWStan.Text);
       dane0.ZWCena = double.Parse(entryOdczytyZWCena.Text);
       dane0.CWStan = int.Parse(entryOdczytyCWStan.Text);
       dane0.CWCena = double.Parse(entryOdczytyCWCena.Text);
+
+      dane0.Czynsz = double.Parse(entryOdczytyCzynsz.Text);
       dane0.Internet = double.Parse(entryOdczytyInternet.Text);
       dane0.GazStan = int.Parse(entryOdczytyGazStan.Text);
       dane0.GazLicznik = double.Parse(entryOdczytyGazLicznik.Text);
@@ -222,50 +211,111 @@ namespace Mob_240131_Oplaty.Views
       dane0.PokojDuzyCena = double.Parse(entryOdczytyPokojDuzyCena.Text);
       dane0.PokojSredniCena = double.Parse(entryOdczytyPokojSredniCena.Text);
       dane0.PokojMalyCena = double.Parse(entryOdczytyPokojMalyCena.Text);
-
       //zapisuje do pliku
-      listDane.Add(dane0);
-      plik.Zapisz(listDane);
-
+      listDane.Insert(0,dane0);
+      dane0.Zapisz(listDane);
       //zamyka okna
-      stackLayoutOdczytyDane.IsVisible = false;
+      stackLayoutOdczytyDanePokazDodajEdytuj.IsVisible = false;
       stackLayoutOdczytyDodaj.IsVisible = false;
-
       //otwiera okna i przelicza dane
-      OdczytyPokazWyliczenia();
+      OdczytyDanePokaz();
       stackLayoutOdczytyDodajEdytujUsun.IsVisible = true;
-      listViewOdczytyWyliczenia.IsVisible = true;
+      listViewOdczytyDanePokaz.IsVisible = true;
     }
 
 
     private void buttonOdczytyDodajCancel_Clicked(object sender, EventArgs e)
     {
-      stackLayoutOdczytyDane.IsVisible = false;
+      stackLayoutOdczytyDanePokazDodajEdytuj.IsVisible = false;
       stackLayoutOdczytyDodaj.IsVisible = false;
       stackLayoutOdczytyDodajEdytujUsun.IsVisible = true;
-      listViewOdczytyWyliczenia.IsVisible = true;
+      listViewOdczytyDanePokaz.IsVisible = true;
     }
 
 
 
-
+    //tu edytowanie--------------------------------------------------------
     private void buttonOdczytyEdytuj_Clicked(object sender, EventArgs e)
     {
-
-    }
-
-    private void buttonOdczytyEdytuj1_Clicked(object sender, EventArgs e)
-    {
-
+      stackLayoutOdczytyDodajEdytujUsun.IsVisible = false;
+      stackLayoutOdczytyEdytuj1.IsVisible = true;
     }
 
     private void buttonOdczytyEdytujCancel_Clicked(object sender, EventArgs e)
     {
-
+      stackLayoutOdczytyEdytuj1.IsVisible = false;
+      stackLayoutOdczytyDodajEdytujUsun.IsVisible = true;
     }
 
 
-    //usuń dane z miesiąca
+
+    private void buttonOdczytyEdytuj1_Clicked(object sender, EventArgs e)
+    {
+      stackLayoutOdczytyEdytuj1.IsVisible = false;
+      stackLayoutOdczytyEdytuj2.IsVisible = true;
+
+      listViewOdczytyDanePokaz.IsVisible = false;
+
+      OdczytyDanePokazDodajEdytuj(false);
+      stackLayoutOdczytyDanePokazDodajEdytuj.IsVisible = true;
+
+    }
+
+    private void buttonOdczytyEdytuj2_Clicked(object sender, EventArgs e)
+    {
+      Dane dane0 = new Dane();
+      //odczytuje dane z formularza
+      dane0.Data = datePickerOdczyty.Date;
+      //jak nie wybrano miesiaca dostaje -1
+      if (pickerOdczytyMiesiac.SelectedIndex == -1)
+      {
+        dane0.Miesiac = dane0.Data.Month;
+      }
+      else
+      {
+        dane0.Miesiac = pickerOdczytyMiesiac.SelectedIndex;
+      }
+
+      dane0.ZWStan = int.Parse(entryOdczytyZWStan.Text);
+      dane0.ZWCena = double.Parse(entryOdczytyZWCena.Text);
+      dane0.CWStan = int.Parse(entryOdczytyCWStan.Text);
+      dane0.CWCena = double.Parse(entryOdczytyCWCena.Text);
+
+      dane0.Czynsz = double.Parse(entryOdczytyCzynsz.Text);
+      dane0.Internet = double.Parse(entryOdczytyInternet.Text);
+      dane0.GazStan = int.Parse(entryOdczytyGazStan.Text);
+      dane0.GazLicznik = double.Parse(entryOdczytyGazLicznik.Text);
+      dane0.GazCena = double.Parse(entryOdczytyGazCena.Text);
+      dane0.PradStan = int.Parse(entryOdczytyPradStan.Text);
+      dane0.PradLicznik = double.Parse(entryOdczytyPradLicznik.Text);
+      dane0.PradCena = double.Parse(entryOdczytyPradCena.Text);
+      dane0.PokojDuzyCena = double.Parse(entryOdczytyPokojDuzyCena.Text);
+      dane0.PokojSredniCena = double.Parse(entryOdczytyPokojSredniCena.Text);
+      dane0.PokojMalyCena = double.Parse(entryOdczytyPokojMalyCena.Text);
+      //zapisuje do pliku
+      listDane.Insert(nrTapped, dane0);
+      listDane.RemoveAt(nrTapped+1);
+      dane0.Zapisz(listDane);
+      //zamyka okna
+      stackLayoutOdczytyDanePokazDodajEdytuj.IsVisible = false;
+      stackLayoutOdczytyEdytuj2.IsVisible = false;
+      //otwiera okna i przelicza dane
+      OdczytyDanePokaz();
+      stackLayoutOdczytyDodajEdytujUsun.IsVisible = true;
+      listViewOdczytyDanePokaz.IsVisible = true;
+
+    }
+
+    private void buttonOdczytyEdytujCancel2_Clicked(object sender, EventArgs e)
+    {
+      stackLayoutOdczytyEdytuj2.IsVisible = false;
+      stackLayoutOdczytyDodajEdytujUsun.IsVisible = true;   
+      listViewOdczytyDanePokaz.IsVisible=true;
+    }
+
+
+
+    //tu usuwanie----------------------------------------------------
     private void buttonOdczytyUsun_Clicked(object sender, EventArgs e)
     {
       stackLayoutOdczytyDodajEdytujUsun.IsVisible = false;
@@ -289,9 +339,10 @@ namespace Mob_240131_Oplaty.Views
 
     private void buttonOdczytyUsun2_Clicked(object sender, EventArgs e)
     {
+      Dane dane0 = new Dane();
       listDane.RemoveAt(nrTapped);
-      plik.Zapisz(listDane);
-      OdczytyPokazWyliczenia();
+      dane0.Zapisz(listDane);
+      OdczytyDanePokaz();
 
       stackLayoutOdczytyUsun1.IsVisible = true;
       stackLayoutOdczytyUsun2.IsVisible = false;
@@ -306,5 +357,7 @@ namespace Mob_240131_Oplaty.Views
       stackLayoutOdczytyUsun.IsVisible = false;
       stackLayoutOdczytyDodajEdytujUsun.IsVisible = true;
     }
+
+
   }
 }

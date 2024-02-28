@@ -4,6 +4,7 @@
              x:Class="Mob_240131_Oplaty.Views.Odczyty"
              NavigationPage.HasNavigationBar="False">
 
+ <StackLayout>
   <ScrollView>
     <StackLayout>
         
@@ -25,14 +26,28 @@
 
 
 
-            <StackLayout x:Name="stackLayoutOdczytyEdytuj" IsVisible="false" BackgroundColor="SlateGray">
+            <StackLayout x:Name="stackLayoutOdczytyEdytuj1" IsVisible="false" BackgroundColor="SlateGray">
                 <Label Text="zaznacz co edytować" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
-                <Label x:Name="labelOdczytyEdytuj" Text="" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
-                <StackLayout Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
+                <Label x:Name="labelOdczytyEdytuj" Text="" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                <StackLayout  Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
                     <Button x:Name="buttonOdczytyEdytuj1" Text=" edytuj " Clicked="buttonOdczytyEdytuj1_Clicked"/>
                     <Button x:Name="buttonOdczytyEdytujCancel" Text=" cancel " Clicked="buttonOdczytyEdytujCancel_Clicked"/>
+                 </StackLayout>
+             </StackLayout>
+
+            <StackLayout x:Name="stackLayoutOdczytyEdytuj2" IsVisible="false" BackgroundColor="SlateGray">
+                <Label Text="popraw i kliknij zapisz" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+                <StackLayout  Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
+                    <Button x:Name="buttonOdczytyEdytuj2" Text=" zapisz " Clicked="buttonOdczytyEdytuj2_Clicked"/>
+                    <Button x:Name="buttonOdczytyEdytujCancel2" Text=" cancel " Clicked="buttonOdczytyEdytujCancel2_Clicked"/>
                 </StackLayout>
             </StackLayout>
+
+
+
+
+
+
 
 
             <StackLayout x:Name="stackLayoutOdczytyUsun" IsVisible="false" BackgroundColor="MediumVioletRed">
@@ -49,38 +64,23 @@
             </StackLayout>
 
 
-
-
-
-
-
-            <ListView x:Name="listViewOdczytyWyliczenia" IsVisible="true" Margin="2" RowHeight="540"
-                      ItemTapped="listViewOdczytyWyliczenia_ItemTapped" >
+        
+        
+            <ListView x:Name="listViewOdczytyDanePokaz" IsVisible="true" Margin="2" RowHeight="280"
+                      ItemTapped="listViewOdczytyDanePokaz_ItemTapped" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout BackgroundColor="#1515">
                                 <Label Text="-- -- -- -- -- -- -- -- --" HorizontalOptions="Center"/>
-                                <Label Text="{Binding WierszDataMiesiac}" BackgroundColor="#b1a7a6"/>
-
-                                <Label Text="{Binding WierszOplatyStale0}" BackgroundColor="#d3d3d3"/>
-                                <Label Text="{Binding WierszOplatyStale1}"/>
-                                <Label Text="{Binding WierszOplatyStale2}"/>
-
-                                <Label Text="{Binding WierszOplatyZmienne0}" BackgroundColor="#d3d3d3"/>
-                                <Label Text="{Binding WierszZW}"/>
-                                <Label Text="{Binding WierszCW}"/>
+                                <Label Text="{Binding WierszDataMiesiac}" BackgroundColor="#b1a7a6"/>                                
                                 <Label Text="{Binding WierszGaz}"/>
                                 <Label Text="{Binding WierszPrad}"/>
-
-                                <Label Text="{Binding WierszPokojDuzy0}" BackgroundColor="#d3d3d3"/>
-                                <Label Text="{Binding WierszPokojDuzy1}"/>
-                                <Label Text="{Binding WierszPokojSredni0}" BackgroundColor="#d3d3d3"/>
-                                <Label Text="{Binding WierszPokojSredni1}"/>
-                                <Label Text="{Binding WierszPokojMaly0}" BackgroundColor="#d3d3d3"/>
-                                <Label Text="{Binding WierszPokojMaly1}"/>
-
-                                <Label Text="---------------------------" HorizontalOptions="Center"/>
+                                <Label Text="{Binding WierszZW}"/>
+                                <Label Text="{Binding WierszCW}"/>
+                                <Label Text="{Binding WierszInternet}"/>
+                                <Label Text="{Binding WierszSpoldzielnia}"/>
+                                <Label Text="{Binding WierszPokoje}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -89,7 +89,8 @@
 
 
 
-      <StackLayout x:Name="stackLayoutOdczytyDane" Padding="5" BackgroundColor="#1515"  IsVisible="false">
+
+      <StackLayout x:Name="stackLayoutOdczytyDanePokazDodajEdytuj" Padding="5" BackgroundColor="#1515"  IsVisible="false">
             
         <StackLayout Orientation="Horizontal">
             <Label Text="data odczytu" WidthRequest="100"/>
@@ -106,25 +107,25 @@
                 
         <StackLayout Orientation="Horizontal">
             <Label Text="gaz" FontAttributes="Bold" WidthRequest="100"/>
-            <Entry x:Name="entryOdczytyGazStan" WidthRequest="100" Keyboard="Numeric"/>
+            <Entry x:Name="entryOdczytyGazStan" WidthRequest="100" Keyboard="Numeric" Placeholder="0"/>
             <Label x:Name="labelOdczytyGazStanBylo"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="prąd" FontAttributes="Bold" WidthRequest="100"/>
-            <Entry x:Name="entryOdczytyPradStan" WidthRequest="100" Keyboard="Numeric" />
+            <Entry x:Name="entryOdczytyPradStan" WidthRequest="100" Keyboard="Numeric" Placeholder="0"/>
             <Label x:Name="labelOdczytyPradStanBylo"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="ciepła woda" FontAttributes="Bold" WidthRequest="100"/>
-            <Entry x:Name="entryOdczytyCWStan" WidthRequest="100" Keyboard="Numeric" />
+            <Entry x:Name="entryOdczytyCWStan" WidthRequest="100" Keyboard="Numeric" Placeholder="0" />
             <Label x:Name="labelOdczytyCWStanBylo"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="zimna woda" FontAttributes="Bold" WidthRequest="100"/>
-            <Entry x:Name="entryOdczytyZWStan" WidthRequest="100" Keyboard="Numeric" />
+            <Entry x:Name="entryOdczytyZWStan" WidthRequest="100" Keyboard="Numeric" Placeholder="0"/>
             <Label x:Name="labelOdczytyZWStanBylo"/>
         </StackLayout>
 
@@ -203,4 +204,7 @@
         
     </StackLayout>
   </ScrollView>
+
+ </StackLayout>
+
 </ContentPage>
