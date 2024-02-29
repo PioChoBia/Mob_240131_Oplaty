@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mob_240131_Oplaty.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,76 +16,39 @@ namespace Mob_240131_Oplaty.Views
     public Miesiace()
     {
       InitializeComponent();
+
+
+
+
+
     }
 
-    private void buttonOdczytyDodaj_Clicked(object sender, EventArgs e)
+
+
+    private void listViewMiesiaceWyliczeniaPokaz_ItemTapped(object sender, ItemTappedEventArgs e)
     {
 
     }
 
-    private void buttonOdczytyEdytuj_Clicked(object sender, EventArgs e)
+    private void ContentPage_PropertyChanging(object sender, PropertyChangingEventArgs e)
     {
-
-    }
-
-    private void buttonOdczytyUsun_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void buttonOdczytyDodaj1_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void buttonOdczytyDodajCancel_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void buttonOdczytyEdytuj1_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void buttonOdczytyEdytujCancel_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void buttonOdczytyUsun1_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void buttonOdczytyUsunCancel_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void buttonOdczytyUsun2_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void buttonOdczytyUsunCancel2_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void listViewOdczytyDanePokaz_ItemTapped(object sender, ItemTappedEventArgs e)
-    {
-
-    }
-
-    private void listViewOdczytyWyliczenia_ItemTapped(object sender, ItemTappedEventArgs e)
-    {
+      Obliczenia obliczenia = new Obliczenia();
+      var v = obliczenia.ListMiesiacePokazWylicz();
+      if (v.Count > 0)
+      {
+        labelMiesiace.IsVisible = false;
+        listViewMiesiaceWyliczeniaPokaz.ItemsSource = v;
+      }
+      else
+      {
+        labelMiesiace.IsVisible = true;
+      }
 
     }
 
 
     /*
-    
+
     private void OdczytyDanePokaz()
     {  
       Dane dane0 = new Dane();
@@ -164,7 +128,7 @@ namespace Mob_240131_Oplaty.Views
         labelOdczytyZWStanBylo.Text = "";
         labelOdczytyCWStanBylo.Text = "";
       }
-            
+
       entryOdczytyGazStan.Text = dane0.GazStan.ToString() ;
       entryOdczytyPradStan.Text = dane0.PradStan.ToString();
       entryOdczytyZWStan.Text = dane0.ZWStan.ToString();

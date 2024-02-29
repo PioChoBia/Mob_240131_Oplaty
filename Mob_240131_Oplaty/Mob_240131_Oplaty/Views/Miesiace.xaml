@@ -2,88 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mob_240131_Oplaty.Views.Miesiace"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             PropertyChanging="ContentPage_PropertyChanging"            
+             >
 
-
-    <ScrollView>
+   <StackLayout>
+     <ScrollView>
         <StackLayout>
 
-            <StackLayout  x:Name="stackLayoutOdczytyDodajEdytujUsun" IsVisible="true" Orientation="Horizontal" HorizontalOptions="Center">
-                <Button x:Name="buttonOdczytyDodaj" Text=" dodaj nowy " Clicked="buttonOdczytyDodaj_Clicked"/>
-                <Button x:Name="buttonOdczytyEdytuj" Text=" edytuj " Clicked="buttonOdczytyEdytuj_Clicked"/>
-                <Button x:Name="buttonOdczytyUsun" Text=" usuń " Clicked="buttonOdczytyUsun_Clicked"/>
-            </StackLayout>
+
+                <Label x:Name="labelMiesiace" Text="muszą być min 2 odczyty" HorizontalOptions="Center"/>
 
 
-
-            <StackLayout x:Name="stackLayoutOdczytyDodaj" IsVisible="false" BackgroundColor="AntiqueWhite" Padding="5">
-                <Label Text="wpisz dane i kliknij dodaj" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
-                <StackLayout Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="buttonOdczytyDodaj1" Text=" dodaj " Clicked="buttonOdczytyDodaj1_Clicked"/>
-                    <Button x:Name="buttonOdczytyDodajCancel" Text=" cancel " Clicked="buttonOdczytyDodajCancel_Clicked"/>
-                </StackLayout>
-            </StackLayout>
-
-
-
-            <StackLayout x:Name="stackLayoutOdczytyEdytuj" IsVisible="false" BackgroundColor="SlateGray">
-                <Label Text="zaznacz co edytować" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
-                <Label x:Name="labelOdczytyEdytuj" Text="" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
-                <StackLayout Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="buttonOdczytyEdytuj1" Text=" edytuj " Clicked="buttonOdczytyEdytuj1_Clicked"/>
-                    <Button x:Name="buttonOdczytyEdytujCancel" Text=" cancel " Clicked="buttonOdczytyEdytujCancel_Clicked"/>
-                </StackLayout>
-            </StackLayout>
-
-
-            <StackLayout x:Name="stackLayoutOdczytyUsun" IsVisible="false" BackgroundColor="MediumVioletRed">
-                <Label Text="zaznacz co usunąć" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
-                <Label x:Name="labelOdczytyUsun" Text="" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
-                <StackLayout x:Name="stackLayoutOdczytyUsun1" IsVisible="true" Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="buttonOdczytyUsun1" Text=" usuń " Clicked="buttonOdczytyUsun1_Clicked"/>
-                    <Button x:Name="buttonOdczytyUsunCancel" Text=" cancel " Clicked="buttonOdczytyUsunCancel_Clicked"/>
-                </StackLayout>
-                <StackLayout x:Name="stackLayoutOdczytyUsun2" IsVisible="false" Orientation="Horizontal"   HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="buttonOdczytyUsun2" Text=" na pewno usunąć ? " Clicked="buttonOdczytyUsun2_Clicked"/>
-                    <Button x:Name="buttonOdczytyUsunCancel2" Text=" cancel " Clicked="buttonOdczytyUsunCancel2_Clicked"/>
-                </StackLayout>
-            </StackLayout>
-
-
-
-
-            <ListView x:Name="listViewOdczytyDanePokaz" IsVisible="true" Margin="2" RowHeight="280"
-                      ItemTapped="listViewOdczytyDanePokaz_ItemTapped" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout BackgroundColor="#1515">
-                                <Label Text="-- -- -- -- -- -- -- -- --" HorizontalOptions="Center"/>
-                                <Label Text="{Binding WierszDataMiesiac}" BackgroundColor="#b1a7a6"/>
-                                <Label Text="{Binding WierszGaz}"/>
-                                <Label Text="{Binding WierszPrad}"/>
-                                <Label Text="{Binding WierszZW}"/>
-                                <Label Text="{Binding WierszCW}"/>
-                                <Label Text="{Binding WierszInternet}"/>
-                                <Label Text="{Binding WierszSpoldzielnia}"/>
-                                <Label Text="{Binding WierszPokoje}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-
-
-
-
-
-
-
-
-
-            <ListView x:Name="listViewOdczytyWyliczenia" IsVisible="false" Margin="2" RowHeight="540"
-                      ItemTapped="listViewOdczytyWyliczenia_ItemTapped" >
+                <ListView x:Name="listViewMiesiaceWyliczeniaPokaz"  Margin="2" RowHeight="540"
+                      ItemTapped="listViewMiesiaceWyliczeniaPokaz_ItemTapped" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -116,120 +48,7 @@
             </ListView>
 
 
-
-            <StackLayout x:Name="stackLayoutOdczytyDane" Padding="5" BackgroundColor="#1515"  IsVisible="false">
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="data odczytu" WidthRequest="100"/>
-                    <DatePicker x:Name="datePickerOdczyty" FontSize="Medium"
-                        Format=" dd - MM - yyyy" Date="{Binding SelectedFromDate}"/>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="za miesiąc" WidthRequest="100"/>
-                    <Picker x:Name="pickerOdczytyMiesiac" FontSize="Medium"  WidthRequest="200"/>
-                </StackLayout>
-
-                <Label Text="------------------------------------------------------" HorizontalOptions="Center"/>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="gaz" FontAttributes="Bold" WidthRequest="100"/>
-                    <Entry x:Name="entryOdczytyGazStan" WidthRequest="100" Keyboard="Numeric"/>
-                    <Label x:Name="labelOdczytyGazStanBylo"/>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="prąd" FontAttributes="Bold" WidthRequest="100"/>
-                    <Entry x:Name="entryOdczytyPradStan" WidthRequest="100" Keyboard="Numeric" />
-                    <Label x:Name="labelOdczytyPradStanBylo"/>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="ciepła woda" FontAttributes="Bold" WidthRequest="100"/>
-                    <Entry x:Name="entryOdczytyCWStan" WidthRequest="100" Keyboard="Numeric" />
-                    <Label x:Name="labelOdczytyCWStanBylo"/>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="zimna woda" FontAttributes="Bold" WidthRequest="100"/>
-                    <Entry x:Name="entryOdczytyZWStan" WidthRequest="100" Keyboard="Numeric" />
-                    <Label x:Name="labelOdczytyZWStanBylo"/>
-                </StackLayout>
-
-                <Label Text="------------------------------------------------------" HorizontalOptions="Center"/>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="gaz opłata za licznik" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyGazLicznik" WidthRequest="100" 
-                                    Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="gaz cena 1 m3" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyGazCena" WidthRequest="100" 
-                                    Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="prąd opłata za licznik" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyPradLicznik" WidthRequest="100" 
-                                    Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="prąd cena 1 kWh" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyPradCena" WidthRequest="100" 
-                                    Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="zimna woda cena 1m3" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyZWCena" WidthRequest="100"  Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="ciepła woda cena 1 m3" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyCWCena" WidthRequest="100" 
-                                    Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="internet" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyInternet" WidthRequest="100" 
-                                    Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="spółdzielnia" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyCzynsz" WidthRequest="100" 
-                                    Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="pokój duży" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyPokojDuzyCena" WidthRequest="100" 
-                                    Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="pokój średni" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyPokojSredniCena" WidthRequest="100" 
-                                    Keyboard="Numeric" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="pokój mały" WidthRequest="150"/>
-                    <Entry x:Name="entryOdczytyPokojMalyCena" WidthRequest="100" 
-                                Keyboard="Numeric" />
-                </StackLayout>
-
-            </StackLayout>
-
-
-            <Label Text=""/>
-
-
         </StackLayout>
     </ScrollView>
-
+   </StackLayout>
 </ContentPage>
